@@ -1,0 +1,25 @@
+{% IF promotion_campaign_empty %}
+<div class="message attention">Акций в нашем магазине пока не проводилось</div>
+{% ELSE %}
+<!-- Список акций -->
+<div class="products__container">
+  <div class="products__grid">
+  {% FOR promotion_campaign %}
+  <div class="promotion__item product__item {% IFNOT promotion_campaign.IS_WORK %}empty{% ENDIF %}">
+    <div class="promotion__inner">
+      <div class="promotion__image">
+        <a href="{promotion_campaign.URL | url_amp}" title="{promotion_campaign.NAME}" class="promotion__percentage">{promotion_campaign.PERCENTAGE}%</a>
+      </div>
+      <a class="promotion__name" href="{promotion_campaign.URL | url_amp}" title="{promotion_campaign.NAME}">{promotion_campaign.NAME}</a>
+      <div class="promotion__date">
+        <span>{promotion_campaign.BEGINNING_TIME | date("d.m.Y")}</span>
+        <span class="separator">-</span>
+        <span>{promotion_campaign.EXPIRED_TIME | date("d.m.Y")}</span>
+      </div>
+	    <a class="button small" href="{promotion_campaign.URL | url_amp}" title="{promotion_campaign.NAME}">Подробнее</a>
+    </div>
+  </div>
+  {% ENDFOR promotion_campaign %}
+  </div>
+</div>
+{% ENDIF %}

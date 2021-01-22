@@ -1,0 +1,172 @@
+<div class="page">
+  <!-- Описание -->
+  <div class="htmlDataBlock">{PAGE_CONTENT}</div>
+  <!-- Короткое SEO-описание -->
+  {% IF PAGE_SEO_DESCRIPTION_SHORT %}
+    <div class="htmlDataBlock">{PAGE_SEO_DESCRIPTION_SHORT}</div>
+  {% ENDIF %}
+  <!-- Полное SEO-описание -->
+  {% IF PAGE_SEO_DESCRIPTION_LARGE %}
+    <div class="htmlDataBlock">{PAGE_SEO_DESCRIPTION_LARGE}</div>
+  {% ENDIF %} 
+</div>
+
+<div id="demo" style="display: none">
+  <div class="block__title">
+	  <div class="title">Заголовоки:</div>
+  </div>
+  <h1>Заголовок H1: 2rem</h1>
+  <h2>Заголовок H1: 1.75rem</h2>
+  <h3>Заголовок H1: 1.5rem</h3>
+  <h4>Заголовок H1: 1.25rem</h4>
+  <h5>Заголовок H1: 1rem</h5>
+  <h6>Заголовок H1: 0.875rem</h6>
+  <hr>
+	<div class="block__title">
+		<div class="title">Основные стили:</div>
+	</div>
+  <p>Основной текст: Эта страница является примером контента, которую мы создали автоматически. Изменить или удалить её можно в панели управления, во вкладке "Сайт", в разделе страницы</p>
+  <a href="#">Текстовая ссылка</a>
+  <a href="#">Текстовая ссылка при наведении</a>
+  <hr>
+	<div class="block__title">
+		<div class="title">Системные сообщения. Уведомления</div>
+	</div>
+	<div class="success">success. Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
+	<div class="warning">warning. Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
+	<div class="attention">attention. Lorem ipsum dolor sit amet, consectetur adipisicing</div>
+	<div class="information">information. Lorem ipsum dolor sit amet, consectetur adipisicing</div>
+	<div class="help">help. Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
+	<hr>
+	<div class="block__title">
+		<div class="title">Кнопки на сайте BUTTON:</div>
+	</div>
+  <button class="button">button</button>
+  <button class="button added">button:hover</button>
+  <button class="button2">button2</button>
+  <button class="button2 added">button2:hover</button>
+  <button class="button3">button3</button>
+  <button class="button3 added">button3:hover</button>
+  <button class="button4">button4</button>
+  <button class="button4 added">button4:hover</button>
+	<hr>
+	<button class="button big">big</button>
+	<button class="button small">small</button>
+	<button class="button medium">medium</button>
+	<button class="button disabled">disabled</button>
+	<a class="more" href="#">more</a>
+  <hr>
+  <a href="#" class="add-cart"><i class="icon-cart"></i><span>В корзину c иконкой</span></a>
+  <a href="#" class="add-cart"><span>В корзину c иконкой</span></a>
+  <a href="#" class="add-compare"><span>В сравнение</span></a>
+  <a href="#" class="add-favorites"><span>В избранное</span></a>
+	<a href="#" class="add-notify"><span>Уведомить</span></a>
+	<a href="#" class="add-empty"><span>Нет в наличии</span></a>
+	<a href="#" class="quickview"><span>Быстрый просмотр</span></a>
+	
+  <hr>
+	<div class="block__title">
+		<div class="title">Поля на сайте INPUT. Формализованный список </div>
+	</div>
+  <div class="form__list">
+    <div class="form__fields">
+      <label for="sites_client_person" class="required"><span>Ваше Имя</span><em>*</em></label>
+      <input id="sites_client_person" type="text" name="form[contact][person]" value="{ORDER_FORM_CONTACT_PERSON}" maxlength="100" class="form__input" type="text" placeholder="ФИО *" required/>
+    </div>
+    <div class="form__fields">
+      <label for="sites_client_phone" class="required"><span>Телефон</span><em>*</em></label>
+      <input id="sites_client_phone" type="tel" name="form[contact][phone]" value="{ORDER_FORM_CONTACT_PHONE}" maxlength="255" class="form__input form__phone" type="text" placeholder="Телефон *" required/>
+    </div>
+    <div class="form__fields email">
+      <label for="sites_client_email" {% IF ORDER_FORM_CONTACT_WANT_REGISTER %}class="required"{% ENDIF %}><span>Ваш E-mail</span><em>*</em></label>
+      <input id="sites_client_email" type="email" name="form[contact][email]" value="{ORDER_FORM_CONTACT_EMAIL}" maxlength="255" class="form__input" type="text" placeholder="Электронная почта" {% IF ORDER_FORM_CONTACT_WANT_REGISTER %}required{% ENDIF %}/>
+    </div>
+	  <div class="form__fields">
+		  <label for="sites_client_personERROR" class="required"><span>ERROR</span><em>*</em></label>
+		  <input id="sites_client_personERROR" type="text" name="form[contact][person]" value="{ORDER_FORM_CONTACT_PERSON}" maxlength="100" class="form__input error" type="text" placeholder="ФИО *" required/>
+	  </div>
+	  <div class="form__fields">
+		  <label for="callback_comment" class="required"><span>comment</span><em>*</em></label>
+		  <textarea id="callback_comment" class="textarea" rows="7" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_COMMENT}]" >{FORM_CALLBACK_COMMENT}</textarea>
+	  </div>
+	  <div class="form__fields">
+		  <label for="callback_commentERROR" class="required"><span>comment ERROR</span><em>*</em></label>
+		  <textarea id="callback_commentERROR" class="textarea error" rows="7" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_COMMENT}]" >{FORM_CALLBACK_COMMENT}</textarea>
+	  </div>
+  </div>
+	<div class="form__buttons">
+		<button type="submit" title="Отправить" class="button"><span>Отправить</span></button>
+		<div class="form__pp">Нажимая на кнопку Отправить, Вы соглашаетесь с <a data-fancybox data-src="#fancybox__pp" href="javascript:;">правилами обработки данных</a></div>
+	</div>
+	<hr>
+	
+	<!-- Сортировать по: (Поле сортировки товаров по умолчанию) -->
+	<div class="sort-by selectBox">
+		<!-- Сортировка выпадающим списком	-->
+		<select class="select" name="goods_search_field_id" title="Название сортировки" onchange="this.form.submit();">
+			<option value="1" title="цене: Дорогие — Дешевые" selected="selected">
+				Цена ↓
+			</option>
+			<option value="2" title="цене: Дешевые — Дорогие">
+				Цена ↑
+			</option>
+			<option value="5" title="наличию: много — мало">
+				Наличие
+			</option>
+			<option value="11" title="рейтингу: Хорошие — Плохие">
+				Рейтинг
+			</option>
+			<option value="13" title="количеству отзывов: Много — Мало">
+				Отзывы
+			</option>
+		</select>
+	</div>
+	<div class="show-by selectBox">
+		<select class="select" name="per_page" title="Лимит товаров на странице" onchange="this.form.submit();">
+			<option value="20" selected="selected">20</option>
+			<option value="40">40</option>
+			<option value="60">60</option>
+			<option value="80">80</option>
+			<option value="100">100</option>
+		</select>
+	</div>
+
+  <hr>
+  input
+  radio
+  textarea
+  chechbox
+  select
+  icons
+  favorites
+  compare
+  add-cart
+  quickview
+  add-notify
+  add-empty
+	
+	<hr>
+	<div style="position: relative;">
+		<div class="product__ico">
+			<span class="ico__sales"></span>
+			<span class="ico__sale"></span>
+			<span class="ico__best"></span>
+			<span class="ico__new"></span>
+		</div>
+	</div>
+	<div style="position: relative;">
+		<ol class="pages">
+			<li class="first"><a href="{GOODS_PAGINATE_URL | url_amp}&page=1" title="Первая страница"><span><i class="icon-arrow-left"></i></span></a></li>
+			<li class="prev"><a href="{GOODS_PAGINATE_URL | url_amp}&page={GOODS_PAGES_PREVIOUS}" title="Предыдущая страница"><span>2</span></a></li>
+			<li class="current"><span>3</span></li>
+			<li class="next"><a href="{GOODS_PAGINATE_URL | url_amp}&page={GOODS_PAGES_NEXT}" title="Следующая страница"><span>4</span></a></li>
+			<li class="last"><a href="{GOODS_PAGINATE_URL | url_amp}&page={GOODS_PAGES_LAST}" title="Последняя страница"><span><i class="icon-arrow-right"></i></span></a></li>
+		</ol>
+	</div>
+	<div style="position: relative;">
+		<div class="owl-nav">
+			<div class="owl-prev"></div>
+			<div class="owl-next"></div>
+		</div>
+	</div>
+</div>

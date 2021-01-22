@@ -1,0 +1,448 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+	<title>{PAGE_TITLE}</title>
+	<meta name="description" content="{PAGE_META_DESCRIPTION}"/>
+	<meta name="keywords" content="{PAGE_META_KEYWORDS}"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="Content-Language" content="ru"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<meta name="format-detection" content="telephone=no"/><!--если вы где-нибудь на странице указали номер телефона в html-коде и не указали в хедере, то смартфон распознает его как телефонный номер и попытается набрать его по клику. -->
+	<link rel="icon" href="{ASSETS_IMAGES_PATH}favicon.ico?design=THEMENAME" type="image/x-icon"/>
+	<link rel="shortcut icon" href="{ASSETS_IMAGES_PATH}favicon.ico?design=THEMENAME" type="image/x-icon"/>
+	<meta property="og:title" content="{PAGE_TITLE}">
+	<meta property="og:image" content="{% IF MOD_LNAME=goods %}{GOODS_IMAGE_MEDIUM}{% ELSE %}{INDEX_PAGE_URL}design/logo.png{% ENDIF %}">
+	<meta property="og:url" content="{INDEX_PAGE_URL}">
+	<meta property="og:site_name" content='{SETTINGS_STORE_NAME}'>
+	<meta property="og:type" content="website">
+	<meta property="og:description" content="{PAGE_META_DESCRIPTION}">
+	<!-- SEO параметр определяющий главную страницу для фильтрации её дублей -->
+	{% IF PAGE_CANONICAL %}
+	<link rel="canonical" href="{PAGE_CANONICAL}"/>
+	{% ENDIF %}
+	<!-- Подключаемые шрифты -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/design/GothamPro.css?design=THEMENAME"/>
+	<!-- Стили магазина -->
+	<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}min.css?design=THEMENAME"/>
+	<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}main.css?design=THEMENAME"/>
+	<!-- Скрипты магазина -->
+	<script type="text/javascript" src="{ASSETS_JS_PATH}jquery-3.4.1.min.js?design=THEMENAME"></script>
+</head>
+<body class="nojs {% IF index_page %}index{% ENDIF %} {% IF MOD_LNAME=user && ACT=favorites %}favorites__page{% ENDIF %} {% IF MOD_LNAME = cart %}pageCart{% ENDIF %} {% IF MOD_LNAME = user %}user__page{% ENDIF %}">
+<div class="wrapper">
+	<!-- Сообщение для инвалидов -->
+	<noscript>
+		<div class="noscript">
+			<div class="noscript-inner">
+				<h4><strong>Мы заметили, что у Вас выключен JavaScript.</strong></h4>
+				<h5>Необходимо включить его для корректной работы сайта.</h5>
+			</div>
+		</div>
+		<style>
+			.nojs .preloader {
+				display: none;
+			}
+		</style>
+	</noscript>
+	
+	<!-- Скролл бар -->
+	<progress max="100" value="0"></progress>
+	
+	<!-- Фон для закрытия всплывающих окон -->
+	<div id="overlay"></div>
+	
+	<!-- Шапка -->
+	<header id="header">
+		<div class="container">
+			<!-- Меню -->
+			<div class="menu">
+				<div class="menu__icon dropdown__open" data-open="menu">
+					<i class="icon-menu"></i>
+					<span>Меню</span>
+				</div>
+				<nav class="mainnav" itemscope itemtype="https://schema.org/SiteNavigationElement">
+					<ul class="mainnav__list">
+						{% FOR menu %}
+						{% FOR header %}
+						{% FOR links %}
+						<li><a href="{menu.header.links.URL}" class="mainnav__link {% IF menu.header.links.SELECTED %}active{%ENDIF%}" title="{% IF menu.header.links.TITLE %}{menu.header.links.TITLE}{% ELSE%}{menu.header.links.NAME}{% ENDIF %}" itemprop="url"><span itemprop="name">{menu.header.links.NAME}</span></a></li>
+						{% ENDFOR %}
+						{% ENDFOR %}
+						{% ENDFOR %}
+					</ul>
+				</nav>
+			</div>
+			<!-- Контакты -->
+			<div class="contacts">
+				{% IF SETTINGS_STORE_PHONE_NUMBER1 %}
+				<a class="contacts__block phone" href="tel:{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}" class="contacts__phone phone" title="{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}">
+					<div class="contacts__icon"><i class="icon-phone"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i></div>
+					<div class="contacts__content">
+						<span>{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}</span>
+						<div data-fancybox="" data-src="#fancybox__callback" class="fancybox__link"><span>Заказать звонок</span></div>
+					</div>
+				</a>
+				{% ENDIF %}
+			</div>
+			<!-- Логотип -->
+			<div class="logo" itemscope itemtype="http://schema.org/Organization">
+				<a href="{INDEX_PAGE_URL}" title="{SETTINGS_STORE_NAME}" itemprop="url">
+					<img src="{ASSETS_IMAGES_PATH}logo.png?design=THEMENAME" alt="{SETTINGS_STORE_NAME}" itemprop="logo">
+					<meta itemprop="name" content="{SETTINGS_STORE_NAME}">
+					<span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress"><meta itemprop="addressLocality" content="{SETTINGS_STORE_REGION}" /></span>
+				</a>
+			</div>
+			<!-- Добавить в Избр, Срав, Корзину, ЛК -->
+			<div id="addto">
+				<!-- Поиск -->
+				<div class="search" itemscope itemtype="https://schema.org/WebSite">
+					<link itemprop="url" href="{INDEX_PAGE_URL}"/>
+					<form class="search__form bordered" action="{QUICK_SEARCH_URL}" method="get" title="Поиск по магазину" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction">
+						<meta itemprop="target" content="{SEARCH_URL}?q={{EMPTY}q}" />
+						<input type="hidden" name="goods_search_field_id" value="0" />
+						<input type="text" name="q" value="{FORM_SEARCH_Q}" class="search__input" placeholder="Искать" autocomplete="off" itemprop="query-input" />
+						<button type="submit" class="search__submit" title="Искать"><i class="icon-search"></i></button>
+						<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+						<div class="search__reset"><i class="icon-close"></i></div>
+					</form>
+					<div id="search__result" style="display: none;">
+						<div class="inner">
+							<div class="result__category"></div>
+							<div class="result__goods"></div>
+							<div class="result__showAll button">все результаты</div>
+						</div>
+					</div>
+				</div>
+				<!-- Войти -->
+				<div class="login dropdown">
+					<a href="{USER_LOGIN_URL}" class="addto__label dropdown__open login__icon" title="Личный кабинет" data-open="login">
+						<i class="icon-user"></i>
+						<span>Войти</span>
+					</a>
+					<div id="addtoLogin" class="addto__login dropdown__content" data-open="login">
+						<div class="addto__title">Личный кабинет</div>
+						{% IF CLIENT_IS_LOGIN %}
+						<!-- ЛК для авторизованных пользователей -->
+						<div class="mainnav__links">
+							<a href="{USER_SETTINGS_URL}" title="Личный кабинет" rel="nofollow"><span>Мой кабинет</span></a>
+							<a href="{USER_HISTORY_LIST_URL}" title="История заказов" rel="nofollow"><span>История</span></a>
+							<a href="{FAVORITES_URL}" title="Избранные товары" rel="nofollow"><span>Избранное</span></a>
+							{% IF SETTINGS_COMPARE_DISABLE=0 %}<a href="{COMPARE_URL}" title="Сравнение" rel="nofollow">Сравнение</a>{% ENDIF %}
+							<a href="{USER_LOGOUT_URL}" title="Выход" rel="nofollow"><span>Выход</span></a>
+						</div>
+						{% ELSE %}
+						<!-- Форма входа и регистрации -->
+						<form action="{USER_LOGIN_URL}" method="post" class="form__client">
+							<input type="hidden" name="hash" value="{HASH}" />
+							<input type="hidden" name="from" value="{FROM}" />
+							<!-- Набор полей которые не видит пользователь, но видят боты. Когда они их заполняют мы точно знаем, что их прислал нам бот и мы не сохраняем подобный отзыв о товаре, а боту отправившему отзыв сообщаем, что отзыв добавлен успешно, но будет отображён здесь после прохождения модерации -->
+							{ANTISPAM_CODE}
+							<div class="form__list">
+								<div class="form__fields">
+									<label class="required">Электронная почта <em>*</em></label>
+									<input type="email" name="form[sites_client_mail]" value="{FORM_SITES_CLIENT_MAIL}" maxlength="255" class="form__input sites_client_mail email" placeholder="Email" required/>
+								</div>
+								<div class="form__fields">
+									<label class="required">Пароль: <em>*</em></label>
+									<input type="password" name="form[sites_client_pass]" value="{FORM_SITES_CLIENT_PASS}" maxlength="50" minlength="6" class="form__input sites_client_pass" placeholder="Пароль" onkeyup="checkCapsWarning(event)" onfocus="checkCapsWarning(event)" onblur="removeCapsWarning()" required/>
+									{% IFNOT user_agent_ie %}
+									<div class="showPassBlock"><a href="#" rel="Скрыть пароль" class="showPass">Показать пароль</a></div>
+									{% ENDIF %}
+									<div id="capslock">
+										<div><i class="icon-warning"></i></div>
+										<div><strong>Caps Lock включен.</strong></div>
+										<div>Пароль может быть введен неверно.</div>
+									</div>
+								</div>
+							</div>
+							<div class="client__buttons addto__buttons">
+								<button type="submit" name="send" class="button" title="Войти">Войти</button>
+								<a href="{USER_REGISTER_URL}" class="button">Зарегистрироваться</a>
+							</div>
+						</form>
+						{% ENDIF %}
+					</div>
+				</div>
+				<!-- Корзина -->
+				<div class="cart dropdown {% IF CART_COUNT_TOTAL > 0 %}hasItems{% ENDIF %}">
+					<a href="{CART_URL}" class="addto__label dropdown__open cart__icon" data-open="cart" title="Корзина">
+						<i class="icon-cart"></i>
+						<span class="cart__count" data-count="{CART_COUNT_TOTAL}">{CART_COUNT_TOTAL}</span>
+					</a>
+					<div id="addtoCart" class="addto__cart dropdown__content" data-open="cart">
+						{% IFNOT cart_items_empty %}
+						<div class="addto__title">В Корзине</div>
+						<div class="addto__items">
+							{% FOR cart_items %}
+							<div class="addto__item" data-id="{cart_items.GOODS_ID}">
+								<a href="{cart_items.GOODS_URL}" title="{cart_items.GOODS_NAME}" class="addto__image"><img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-icon.png?design=THEMENAME{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}" alt="{cart_items.GOODS_NAME}" class="goods-image-icon" /></a>
+								<div class="addto__shop">
+									<!-- Название -->
+									<a href="{cart_items.GOODS_URL}" class="addto__name" title="{cart_items.GOODS_NAME}"><span>{cart_items.GOODS_NAME}</span></a>
+									{% IFNOT cart_items.distinctive_properties_empty %}<div class="addto__mod">({% FOR distinctive_properties %}{cart_items.distinctive_properties.NAME}: {cart_items.distinctive_properties.VALUE}{% IFNOT cart_items.distinctive_properties.last %}, {% ENDIF %}{% ENDFOR %})</div>{% ENDIF %}
+									<!-- Цена -->
+									<div class="addto__price {CURRENCY_CHAR_CODE}">
+										<div class="price__now" data-price="{cart_items.GOODS_MOD_PRICE_NOW}">{cart_items.GOODS_MOD_PRICE_NOW | money_format}</div>
+										<!-- Удаление -->
+										<a class="addto__remove remove" href="{cart_items.ORDER_LINE_DELETE_URL}" data-qty="{cart_items.ORDER_LINE_QUANTITY}" title="Удалить позицию" onclick="removeFromCart($(this))"><span>Удалить</span></a>
+									</div>
+								</div>
+							</div>
+							{% ENDFOR %}
+						</div>
+						<div class="addto__total {CURRENCY_CHAR_CODE}">
+							<span>Итого:</span>
+							<span class="price__now">{CART_SUM_NOW}</span>
+						</div>
+						{% ENDIF %}
+						<div class="addto__empty">
+							<div class="addto__title">В корзине пока ничего нет</div>
+							<a href="{CATALOG_URL}" class="button addto__close" title="Продолжить покупки">Продолжить покупки</a>
+						</div>
+						<div class="addto__buttons">
+							<a href="{CART_TRUNCATE_URL}" onclick="removeFromCartAll($(this))" class="button button2 removeAll" title="Очистить корзину"><span>Очистить корзину</span></a>
+							<a href="{CART_URL}" class="button" title="Перейти в Корзину"><span>Оформить заказ</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	
+	
+
+	
+	<!-- Модальные окна -->
+	<noindex>
+		<div class="toTop"><i class="icon-up-chevron"></i></div>
+		<!-- Скрытое обновление корзины -->
+		<div class="hiddenUpdate" style="display: none;"></div>
+		<!-- Политика конфиденциальности в модальном окне -->
+		<div id="fancybox__pp" class="modal" style="display:none">
+			<div class="modal__title block__title">
+				<div class="title">Политика конфиденциальности</div>
+			</div>
+			<div class="modal__content">
+				<div>
+					<h4 class="title">Общие положения</h4>
+					<br/>
+					<p>Некоторые объекты, размещенные на сайте, являются интеллектуальной собственностью компании StoreLand. Использование таких объектов установлено действующим законодательством РФ.</p>
+					<p>На сайте StoreLand имеются ссылки, позволяющие перейти на другие сайты. Компания StoreLand не несет ответственности за сведения, публикуемые на этих сайтах и предоставляет ссылки на них только в целях обеспечения удобства для посетителей своего сайта.</p>
+				</div>
+				<br/>
+				<div>
+					<h4 class="title">Личные сведения и безопасность</h4>
+					<br/>
+					<p>Компания StoreLand гарантирует, что никакая полученная от Вас информация никогда и ни при каких условиях не будет предоставлена третьим лицам, за исключением случаев, предусмотренных действующим законодательством Российской Федерации.</p>
+					<p>В определенных обстоятельствах компания StoreLand может попросить Вас зарегистрироваться и предоставить личные сведения. Предоставленная информация используется исключительно в служебных целях, а также для предоставления доступа к специальной информации.</p>
+					<p>Личные сведения можно изменить, обновить или удалить в любое время в разделе "Аккаунт" > "Профиль".</p>
+					<p>Чтобы обеспечить Вас информацией определенного рода, компания StoreLand с Вашего явного согласия может присылать на указанный при регистрации адрес электронный почты информационные сообщения. В любой момент Вы можете изменить тематику такой рассылки или отказаться от нее.</p>
+					<p>Как и многие другие сайты, StoreLand использует технологию cookie, которая может быть использована для продвижения нашего продукта и измерения эффективности рекламы. Кроме того, с помощь этой технологии StoreLand настраивается на работу лично с Вами. В частности без этой технологии невозможна работа с авторизацией в панели управления.</p>
+					<p>Сведения на данном сайте имеют чисто информативный характер, в них могут быть внесены любые изменения без какого-либо предварительного уведомления.</p>
+					<p>Чтобы отказаться от дальнейших коммуникаций с нашей компанией, изменить или удалить свою личную информацию, напишите нам через форму обратной связи</p>
+				</div>
+			</div>
+		</div>
+		<!-- Обратный звонок в модальном окне -->
+		<div id="fancybox__callback" class="modal" style="display:none">
+			<div class="modal__title block__title">
+				<div class="title">Обратный звонок</div>
+			</div>
+			<div class="modal__content">
+				<form method="post" action="{CALLBACK_URL}" class="form__callback" enctype="multipart/form-data">
+					<input type="hidden" name="hash" value="{HASH}"/>
+					<input class="callbackredirect" type="hidden" name="return_to" value="{CALLBACK_URL}"/>
+					<!-- Набор полей которые не видит пользователь, но видят боты. Когда они их заполняют мы точно знаем, что их прислал нам бот и мы не сохраняем подобный отзыв о товаре, а боту отправившему отзыв сообщаем, что отзыв добавлен успешно, но будет отображён здесь после прохождения модерации -->
+					{ANTISPAM_CODE}
+					<div class="form__fields">
+						<div class="form__field">
+							<input id="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" class="form__input form__person" type="text" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="{FORM_CALLBACK_PERSON}" placeholder="Владимир П." autocomplete="off"/>
+						</div>
+						<div class="form__field">
+							<input id="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" class="form__input form__phone" type="tel" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="{FORM_CALLBACK_PHONE}" placeholder="+7 (987) 654-3210" autocomplete="off"/>
+						</div>
+					</div>
+					<div class="form__buttons">
+						<button type="submit" title=">Заказать звонок" class="form__button button">Заказать звонок</button>
+					</div>
+					<div class="form__pp">Нажимая на кнопку &laquo;Заказать звонок&raquo;, Вы соглашаетесь с
+						<a data-fancybox data-src="#fancybox__pp" href="javascript:;">правилами обработки данных</a></div>
+				</form>
+			</div>
+		</div>
+		<!-- Обратный звонок в модальном окне -->
+		<div id="fancybox__feedback" class="modal" style="display:none">
+			<div class="modal__title block__title">
+				<div class="title">Обратная связь</div>
+			</div>
+			<div class="modal__content">
+				<form method="post" action="{CALLBACK_URL}" class="form__callback" enctype="multipart/form-data">
+					<input type="hidden" name="hash" value="{HASH}"/>
+					<input class="callbackredirect" type="hidden" name="return_to" value="{CALLBACK_URL}"/>
+					<!-- Набор полей которые не видит пользователь, но видят боты. Когда они их заполняют мы точно знаем, что их прислал нам бот и мы не сохраняем подобный отзыв о товаре, а боту отправившему отзыв сообщаем, что отзыв добавлен успешно, но будет отображён здесь после прохождения модерации -->
+					{ANTISPAM_CODE}
+					<div class="form__fields">
+						<div class="form__field">
+							<input class="form__input form__person form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" type="text" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="{FORM_CALLBACK_PERSON}" placeholder="Владимир П." autocomplete="off"/>
+						</div>
+						<div class="form__field">
+							<input class="form__input form__phone form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" type="tel" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="{FORM_CALLBACK_PHONE}" placeholder="+7 (987) 654-3210" autocomplete="off"/>
+						</div>
+					</div>
+					<div class="form__fields">
+						<textarea class="textarea callback__comment" rows="3" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_COMMENT}]" placeholder="Текст запроса">{FORM_CALLBACK_COMMENT}</textarea>
+					</div>
+					<div class="form__buttons">
+						<button type="submit" title=">Заказать звонок" class="form__button button">Отправить</button>
+					</div>
+					<div class="form__pp">Нажимая на кнопку &laquo;Заказать звонок&raquo;, Вы соглашаетесь с
+						<a data-fancybox data-src="#fancybox__pp" href="javascript:;">правилами обработки данных</a></div>
+				</form>
+			</div>
+		</div>
+		<!-- Уведомить о поступлении в модальном окне -->
+		<div id="fancybox__notify" class="modal" style="display:none">
+			<div class="modal__title block__title">
+				<div class="title">Уведомить о поступлении</div>
+			</div>
+			<div class="modal__content">
+				<form method="post" action="{CALLBACK_URL}" class="form__callback" enctype="multipart/form-data">
+					<input type="hidden" name="hash" value="{HASH}"/>
+					<input type="hidden" name="return_to" value="{CALLBACK_URL}" class="callbackredirect"/>
+					<input type="hidden" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="Уведомить -- {GOODS_NAME}"/>
+					<input type="hidden" name="form[Имя_Товара]" value="{GOODS_NAME}" id="fancy__name"/>
+					<input type="hidden" name="form[Артикул]" value="{GOODS_MOD_ART_NUMBER}" id="fancy__art"/>
+					<!-- Для использования почты для уведомлений необходимо убрать комментарии для строки ниже -->
+					<!-- input type="hidden" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="Уведомить по Email" /-->
+					<!-- Набор полей которые не видит пользователь, но видят боты. Когда они их заполняют мы точно знаем, что их прислал нам бот и мы не сохраняем подобный отзыв о товаре, а боту отправившему отзыв сообщаем, что отзыв добавлен успешно, но будет отображён здесь после прохождения модерации -->
+					{ANTISPAM_CODE}
+					<!-- Для использования почты для уведомлений необходимо удалить блок с телефоном -->
+					<div class="form__fields">
+						<input class="form__input form__phone" type="tel" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="{FORM_CALLBACK_PHONE}" placeholder="+7 (987) 654-3210" autocomplete="off"/>
+					</div>
+					<!-- Для использования почты для уведомлений необходимо удалить ниже style="display: none;" -->
+					<div class="form__fields" style="display: none;">
+						<input class="form__input form__email" type="email" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_EMAIL}]" value="{FORM_CALLBACK_EMAIL}" placeholder="email@email.ru *" autocomplete="off"/>
+					</div>
+					<div class="form__buttons">
+						<button type="submit" title="Уведомить" class="form__button button">Уведомить</button>
+					</div>
+					<div class="form__pp">Нажимая на кнопку &laquo;Уведомить&raquo;, Вы соглашаетесь с
+						<a data-fancybox data-src="#fancybox__pp" href="javascript:;">правилами обработки данных</a></div>
+				</form>
+			</div>
+		</div>
+	</noindex>
+</div>
+
+<!-- В случае их возникновения JS ошибок, отображаем их владельцу магазина для возможности отладки. Покупатели сообщений о JS ошибках не видят -->
+{% IF JAVASCRIPT_BUG_HUNTING_URL %}
+<script type="text/javascript" src="{JAVASCRIPT_BUG_HUNTING_URL}"></script>
+{% ENDIF %}
+<!-- Подключаемые шрифты -->
+<link rel="stylesheet" type="text/css" href="/design/icomoon.css?design=THEMENAME"/>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<!-- Стили магазина -->
+<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}animate.css?design=THEMENAME"/>
+<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}jquery.formstyler.css?design=THEMENAME"/>
+<!-- Скрипты магазина -->
+<script type="text/javascript" src="{ASSETS_JS_PATH}forall.js?design=THEMENAME"></script>
+<script type="text/javascript" src="{ASSETS_JS_PATH}main.js?design=THEMENAME"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js"></script>
+<!-- Если отключен JS -->
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('body').removeClass('nojs');
+		// Прогрес скрола страницы
+		gsap.to('progress', {
+			value: 100,
+			ease: 'none',
+			scrollTrigger: { scrub: 0.3 }
+		});
+	});
+</script>
+<!-- ВНИМАНИЕ! Если Вы удалите код ниже, то это повлияет на работу вашего сайта. Пожалуйста ничего не удаляйте без консультации у специалистов. -->
+<script type="text/javascript">
+	// Запуск основных скриптов для страницы "Товар"
+	{% IF MOD_LNAME = goods %}
+	$(document).ready(function () {
+		goodspage();
+		goodsModification();
+		newModification();
+		gsapAnimGoods();
+	});
+	{% ENDIF %}
+	// Скрипты для страницы "Сравнение"
+	{% IF MOD_LNAME = compare %}
+	$(document).ready(function () {
+		Compare();
+	});
+	{% ENDIF %}
+	// Скрипты для страницы "Корзина"
+	{% IF MOD_LNAME = cart %}
+	$(document).ready(function () {
+		cartQuantity();
+	});
+	{% ENDIF %}
+	// Скрипты для страницы "Товары, Акции, Поиск"
+	{% IF MOD_LNAME = catalog || MOD_LNAME = discount || MOD_LNAME = search %}
+	$(document).ready(function () {
+		priceFilter();
+		catalog();
+		gsapAnimCatalog();
+	});
+	{% ENDIF %}
+	// Запуск основных скриптов для "главной" страницы
+	{% IF index_page %}
+	$(document).ready(function () {
+		slideShow();
+		newsCarousel();
+		pdtSlider();
+		pdtCatalog();
+		pdtBrands();
+		counterDate();
+		gsapAnimIndex();
+	});
+	{% ENDIF %}
+	// Модальное окно уведомления при отправке сообщения
+	{% IF FORM_NOTICE %}
+	new Noty({
+		text: '<div class="noty__addto"><i class="icon-{% IF FORM_NOTICE_IS_GOOD %}check{% ELSE %}warning{% ENDIF %}"></i><div class="noty__message">{FORM_NOTICE | nl2br}</div></div>',
+		layout: "bottomCenter",
+		type: "{% IF FORM_NOTICE_IS_GOOD %}success{% ELSE %}warning{% ENDIF %}",
+		theme: "",
+		textAlign: "center",
+		animation: {
+			open: 'animated fadeInUp',
+			close: 'animated fadeOutDown',
+			easing: 'swing',
+			speed: 400
+		},
+		timeout: "2000",
+		progressBar: true,
+		closable: true,
+		closeOnSelfClick: true,
+		modal: false,
+		dismissQueue: false,
+		onClose: true,
+		killer: false
+	}).show();
+	{% ENDIF %}
+	// Анимация перед загружаемым объектом
+	$(window).on('load', function () {
+		preload();
+	});
+</script>
+
+<style>
+	#ui-datepicker-div {
+		display: none;
+	}
+</style>
+</body>
+</html>
