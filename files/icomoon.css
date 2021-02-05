@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?y50tsw');
-  src:  url('fonts/icomoon.eot?y50tsw#iefix') format('embedded-opentype'),
-  url('fonts/icomoon.ttf?y50tsw') format('truetype'),
-  url('fonts/icomoon.woff?y50tsw') format('woff'),
-  url('fonts/icomoon.svg?y50tsw#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?1866u7');
+  src:  url('fonts/icomoon.eot?1866u7#iefix') format('embedded-opentype'),
+  url('fonts/icomoon.ttf?1866u7') format('truetype'),
+  url('fonts/icomoon.woff?1866u7') format('woff'),
+  url('fonts/icomoon.svg?1866u7#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,42 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-mastercard:before {
+  content: "\e935";
+}
+.icon-mir:before {
+  content: "\e936";
+}
+.icon-qiwi:before {
+  content: "\e937";
+}
+.icon-sber:before {
+  content: "\e938";
+}
+.icon-visa:before {
+  content: "\e939";
+}
+.icon-walletone:before {
+  content: "\e93a";
+}
+.icon-webmoney:before {
+  content: "\e93b";
+}
+.icon-yandex:before {
+  content: "\e93c";
+}
+.icon-yandexmoney:before {
+  content: "\e93d";
+}
+.icon-instagram:before {
+  content: "\e933";
+}
+.icon-tiktok:before {
+  content: "\e934";
+}
+.icon-cart:before {
+  content: "\e932";
+}
 .icon-plus:before {
   content: "\e926";
 }
