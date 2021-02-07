@@ -3022,22 +3022,41 @@ function newsCarousel() {
   });
 }
 
-// Вы смотрели
-function recViewed() {
-  let viewedContent = $('.viewed__items');
-  let viewedCount = viewedContent.find('.viewed__item').length;
-  if(viewedCount<=3){ viewedContent.find('.viewed__buttons').hide(); }
-  $('.viewed__buttons .showAll').on('click',function(){
-    if($(this).hasClass('active')){
-      $(this).removeClass('active').find('span').text("Все отзывы");
-      viewedContent.find('.viewed__item').removeClass('show');
-    }else{
-      $(this).addClass('active').find('span').text("Скрыть все");
-      viewedContent.find('.viewed__item').addClass('show');
+
+// Функция слайдера для "Вы смотрели" на главной странице
+function viewed() {
+  $('#viewed .owl-carousel').owlCarousel({
+    items: 5,
+    margin: 32,
+    loop: false,
+    rewind: true,
+    lazyLoad: true,
+    nav: true,
+    navContainer: '#viewed .owl-nav',
+    navText: [ , ],
+    dots: true,
+    dotsContainer: '#viewed .owl-dots',
+    autoHeight: false,
+    autoHeightClass: 'owl-height',
+    autoplay: false,
+    autoplayHoverPause: true,
+    smartSpeed: 500,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    responsiveClass: true,
+    responsiveRefreshRate: 100,
+    responsive: {
+      0:{items:1},
+      320:{items:1},
+      481:{items:2},
+      641:{items:2},
+      768:{items:3},
+      992:{items:4},
+      1200:{items:5}
     }
   });
 }
-
 
 // Открытие Контактов, Меню, Сравнения, Избранного
 function OpenMenu() {
@@ -3309,7 +3328,7 @@ $(document).ready(function(){
   quantity();
   priceDiff();
   monthNames();
-  recViewed();
+  viewed();
   // Стили для новых селектов
   $('.select').styler();
   // Ленивая загрузка
