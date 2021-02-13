@@ -3255,8 +3255,8 @@ function viewed() {
   });
 }
 
-// Открытие Контактов, Меню, Сравнения, Избранного
-function OpenMenu() {
+function closeMenu() {
+
   // Закрытие всего при нажатии на темную часть
   $('#overlay').on('click', function(e){
     event.preventDefault();
@@ -3266,6 +3266,20 @@ function OpenMenu() {
       setTimeout(() => $('#overlay').removeClass('transparent'), 600)
     }
   });
+
+  // Закрытие элементов
+  $('.dropdown__close, .addto__close').on('click', function(event){
+    event.preventDefault();
+    $('div, a, form').removeClass('opened');
+    $('.dropdown__open').removeClass('opened');
+    $('.dropdown__content').removeClass('opened');
+    $('#overlay').removeClass('opened');
+    console.log('click')
+  });
+
+}
+// Открытие Контактов, Меню, Сравнения, Избранного
+function openMenu() {
   
   // Открытие элементов
   $('.dropdown__open').on('click', function(event){
@@ -3285,15 +3299,6 @@ function OpenMenu() {
       $('.dropdown__content[data-open="'+ value +'"]').addClass('opened');
     }
   });
-  // Закрытие элементов
-  $('.dropdown__close, .addto__close').on('click', function(event){
-    event.preventDefault();
-    $('div, a, form').removeClass('opened');
-    $('.dropdown__open').removeClass('opened');
-    $('.dropdown__content').removeClass('opened');
-    $('#overlay').removeClass('opened');
-    console.log('click')
-  });
 
   // Открытие каталога с сохранением вложенности
   $('.catalog__item .open').on('click', function(event){
@@ -3309,12 +3314,6 @@ function OpenMenu() {
     }
   });
 
-  // Вы смотрели, открытие информации
-  $('.viewed .product__open').on('click', function (event){
-    event.preventDefault();
-    var item = $(this).parent().parent().parent();
-    item.hasClass('opened') ? item.removeClass('opened') : item.addClass('opened');
-  });
 }
 
 // Дополнительные пункты меню в шапке Перенос пунктов меню
@@ -3503,7 +3502,8 @@ function monthNames() {
 
 // Загрузка основных функций шаблона
 $(document).ready(function(){
-  OpenMenu();
+  openMenu();
+  closeMenu();
   AddCart();
   Addto();
   showPass();
