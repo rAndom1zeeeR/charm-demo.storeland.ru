@@ -882,6 +882,32 @@ header .logo {width: 100%;margin-top: 1rem;}
 @media all and (max-width: 992px) {
 .search__content {top: 1.5rem;}
 }
+@media all and (max-width: 767px) {
+.search__content {display: block;position: relative;top: auto;width: 100%;transform: scale(1);left: 0;right: 0;z-index: 1;}
+.search__input {background-color: #FFFFFF;border: 1px solid #e8e8e8;}
+.search__submit {width: 3.5rem;height: 3.5rem;line-height: 4rem;top: .25rem;right: .25rem;}
+}
+
+/** Поисковая выдача **/
+#search__result {display: none;width: 100%;max-height: 410px;position: absolute;right: 0;margin-top: 1rem;padding: 1rem;background: #fff;border: 1px solid #e8e8e8;overflow-y: auto;z-index: 3;}
+#search__result .inner {padding: 0;display: -ms-flexbox;display: -webkit-flex;display: flex;-ms-flex-wrap: wrap;-webkit-flex-wrap: wrap;flex-wrap: wrap;-ms-flex-align: stretch;-webkit-align-items: stretch;-webkit-box-align: stretch;align-items: stretch;flex-direction: column;}
+#search__result .result__item {display: none;width: 100%;line-height: 20px;padding: 10px 0;}
+#search__result .result__item:nth-child(-n+6) {display: block;}
+#search__result .result__item a {display: flex;align-items: center;flex-wrap: wrap;font-size: 1rem;}
+#search__result .result__item a.active {color: #7ca4a3;}
+#search__result .result__item .result__image {width: 40px;margin-right: 20px;text-align: center;}
+#search__result .result__item .result__name {width: calc(100% - 60px);}
+#search__result .result__item img {max-width: 40px;max-height: 40px;}
+#search__result .result__goods {width: 100%;flex-grow: 1;padding: 0 1rem;}
+#search__result .result__category {width: 100%;flex-grow: 1;padding: 0 1rem 1rem 1rem;margin-bottom: 1rem;border-bottom: 1px solid #e8e8e8;}
+#search__result .result__category .result__image {display: none;}
+#search__result .result__category .result__name {width: 100%;}
+#search__result .result__category a {font-weight: bold;}
+#search__result .result__showAll {margin: 1rem auto 0;display: inline-block;}
+#search__result::-webkit-scrollbar {width: 0.5rem;height: 0;}
+#search__result::-webkit-scrollbar-thumb {border-radius: 0.5rem;background-color: #7ca4a3;}
+#search__result::-webkit-scrollbar-track {border-radius: 0.5rem;background-color: #edf2ff;}
+
 
 /*** Добавить в Избр, Срав, Корзину, ЛК ***/
 #addto {width: 280px;display: flex;align-items: center;justify-content: flex-end;}
@@ -895,7 +921,7 @@ header .logo {width: 100%;margin-top: 1rem;}
 #addto {width: 260px;}
 }
 @media all and (max-width: 767px) {
-#addto {width: 100%;margin-top: 2rem;justify-content: flex-start;display: none;}
+#addto {width: 100%;margin-top: 2rem;justify-content: flex-start;}
 #addto .search__icon {display: none;}
 #addto .search {width: 100%;}
 .search__content {display: block;}
@@ -1242,7 +1268,7 @@ footer .footer__block:nth-child(2) {margin-top: 2rem;}
 .products__list .product__image {width: 100px;margin: 0;}
 .products__list .product__image .product__img {height: 100px;}
 .products__list .product__shop {width: calc(100% - 100px);padding-left: 2rem;}
-.products__list .product__ico {margin-bottom: .5rem;position: relative;max-width: 100%;top: auto;justify-content: flex-start;}
+.products__list .product__ico {margin-bottom: .5rem;position: relative;max-width: 100%;top: auto;justify-content: flex-start;z-index: 0;}
 .products__list .product__ico span {margin-right: .5rem;font-size: 10px;width: 30px;padding: 0 .5rem;line-height: 20px;}
 .products__list .product__ico span + span {margin-left: 0;}
 .products__list .product__available {margin-bottom: .5rem;}
