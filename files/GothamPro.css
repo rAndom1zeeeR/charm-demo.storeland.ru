@@ -22,16 +22,7 @@
 	font-style: italic;
 }
 
-@font-face {
-	font-family: 'Gotham Pro';
-	src: url('GothamPro-Medium.eot');
-	src: local('Gotham Pro Medium'), local('GothamPro-Medium'),
-		url('GothamPro-Medium.eot?#iefix') format('embedded-opentype'),
-		url('GothamPro-Medium.woff') format('woff'),
-		url('GothamPro-Medium.ttf') format('truetype');
-	font-weight: 500;
-	font-style: normal;
-}
+
 
 @font-face {
 	font-family: 'Gotham Pro';
@@ -107,6 +98,17 @@
 		url('GothamPro.woff') format('woff'),
 		url('GothamPro.ttf') format('truetype');
 	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Gotham Pro';
+	src: url('GothamPro-Medium.eot');
+	src: local('Gotham Pro Medium'), local('GothamPro-Medium'),
+	url('GothamPro-Medium.eot?#iefix') format('embedded-opentype'),
+	url('GothamPro-Medium.woff') format('woff'),
+	url('GothamPro-Medium.ttf') format('truetype');
+	font-weight: 500;
 	font-style: normal;
 }
 /*
