@@ -369,6 +369,12 @@
 		    <div class="owl-nav"></div>
 		    <div class="owl-dots"></div>
 	    </div>
+	    {% IF opinion_list_empty %}
+	    <div class="opinion__empty">
+		    <div class="opinion__empty-title">Отзывов ещё нет — ваш может стать первым</div>
+		    <div class="opinion__empty-subtitle">Про этот товар ещё никто не написал.</div>
+	    </div>
+	    {% ENDIF %}
       <!-- Список отзывов о товарах -->
       {% IFNOT opinion_list_empty %}
       <div class="opinion__items owl-carousel" itemprop="review" itemscope itemtype="https://schema.org/Review">
