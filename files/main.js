@@ -2407,12 +2407,6 @@ function OrderScripts() {
     let cartSumTotalHide = $('.cartSumDiscount:eq(0) .num').text().toString().replace(/\s/g, '');
     let newSum = parseInt(cartSumTotalHide) + parseInt(priceBlock.text());
     $('.cartSumTotal .num').text(newSum);
-    console.log(price)
-    console.log(zonePrice)
-    console.log(priceBlock)
-    console.log(cartSumTotalHide)
-    console.log(newSum)
-    console.log(priceBlock.text())
     // Скрытие необязательных полей при выборе самовывоза
     if($(this).data('name') == 'Самовывоз'){
       $('.fastOrder__form').addClass('pickup');
@@ -3294,10 +3288,11 @@ function OpenMenu() {
   // Закрытие элементов
   $('.dropdown__close, .addto__close').on('click', function(event){
     event.preventDefault();
-    $('div').removeClass('opened');
+    $('div, a, form').removeClass('opened');
     $('.dropdown__open').removeClass('opened');
     $('.dropdown__content').removeClass('opened');
     $('#overlay').removeClass('opened');
+    console.log('click')
   });
 
   // Открытие каталога с сохранением вложенности

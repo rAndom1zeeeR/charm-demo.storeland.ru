@@ -878,6 +878,9 @@ header .logo {width: 100%;margin-top: 1rem;}
 0% {transform: rotate(0deg);}
 100% {transform: rotate(360deg);}
 }
+@media all and (max-width: 992px) {
+.search__content {top: 1.5rem;}
+}
 
 /*** Добавить в Избр, Срав, Корзину, ЛК ***/
 #addto {width: 280px;display: flex;align-items: center;justify-content: flex-end;}
