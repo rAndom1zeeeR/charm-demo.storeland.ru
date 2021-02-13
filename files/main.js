@@ -2666,7 +2666,7 @@ function startOrder(){
     success: function(data) {     
       OrderAjaxBlock.html($(data).find('.fastOrder').wrap('<div></div>').html());
       OrderAjaxBlock.show('slow');
-      $('html, body').delay(400).animate({scrollTop : jQuery('#main').offset().top}, 800);
+      $('html, body').delay(400).animate({scrollTop : jQuery('#globalOrder').offset().top}, 800);
       coupons();
       OrderScripts();
       OrderScriptsSelect();
@@ -2680,7 +2680,7 @@ function startOrder(){
         globalOrder.hide();
         closeOrder.hide();
         startOrder.show();
-        $('html, body').delay(400).animate({scrollTop : jQuery('#main').offset().top}, 800);
+        $('html, body').delay(400).animate({scrollTop : jQuery('#globalOrder').offset().top}, 800);
         return false;
       });
       // Валидация формы на странице оформления заказа

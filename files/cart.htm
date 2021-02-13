@@ -18,21 +18,19 @@
 	              {% IFNOT cart_items.distinctive_properties_empty %}<div class="cart__properties"><span class="label">{% FOR distinctive_properties %}{cart_items.distinctive_properties.NAME}:</span><span>{cart_items.distinctive_properties.VALUE}</span>{% IFNOT cart_items.distinctive_properties.last %},<br> {% ENDIF %}{% ENDFOR %}</div>{% ENDIF %}
 	            </div>
 	            <div class="cart__actions">
-	              <div class="cart__price cartPriceTotal price__now">{cart_items.ORDER_LINE_PRICE_NOW | money_format}</div>
 	              <div class="cart__qty qty">
 	                <a href="javascript:void(0)" class="qty__minus unselectable" title="Уменьшить"><i class="icon-minus"></i></a>
 	                <input type="text" name="form[quantity][{cart_items.GOODS_MOD_ID}]" maxlength="4" value="{cart_items.ORDER_LINE_QUANTITY}" max="{cart_items.GOODS_MOD_REST_VALUE}" title="Количество, {cart_items.GOODS_MOD_MEASURE_NAME}" class="cartqty" onkeypress="return keyPress(this, event);" onpaste="return false;" autocomplete="off" />
 	                <a href="javascript:void(0)" class="qty__plus unselectable" title="Увеличить"><i class="icon-plus"></i></a>
 	              </div>
-	              <div class="cart__delete"><a data-href="{cart_items.ORDER_LINE_DELETE_URL}" title="Удалить позицию" onclick="cartDelete($(this))" class="remove"><i class="icon-close"></i><span>Удалить</span></a></div>
+		            <div class="cart__price">
+		              <div class="cartPriceTotal price__now">{cart_items.ORDER_LINE_PRICE_NOW | money_format}</div>
+			            <div class="cart__delete"><a data-href="{cart_items.ORDER_LINE_DELETE_URL}" title="Удалить позицию" onclick="cartDelete($(this))" class="remove"><i class="icon-close"></i><span>Удалить товар</span></a></div>
+		            </div>
 	            </div>
 	          </div>
 	        </div>
 	        {% ENDFOR %}
-	        <div class="cart__buttons">
-	          <a href="{CATALOG_URL}" class="cart__back button"><span>Вернуться к покупкам</span></a>
-	          <a href="{CART_TRUNCATE_URL}" class="cart__clear button button2" title="Очистить корзину" onclick="return confirm('Вы действительно хотите удалить все товары из корзины?')"><span>Очистить </span><span>корзину</span></a>
-	        </div>
 	      </div>
 	      <div class="cart__total">
 	        <div class="total__items">
@@ -66,10 +64,15 @@
 	        </div>
 	        <!-- Корзина: Оформление -->
 	        <div class="total__buttons">
-	          <a id="startOrder" class="button" title="Перейти к быстрому оформлению заказа"><span>Оформить </span><span>заказ</span></a>
+		        <a href="{CART_TRUNCATE_URL}" class="cart__clear button button5" title="Очистить корзину" onclick="return confirm('Вы действительно хотите удалить все товары из корзины?')"><span>Очистить </span><span>корзину</span></a>
+	          <div class="inner">
+		          <div class="total__pp">Нажимая на кнопку &laquo;Заказать звонок&raquo;, <br/> Вы соглашаетесь с <a data-fancybox data-src="#fancybox__pp" href="javascript:;">правилами обработки данных</a></div>
+		          <a id="startOrder" class="button button2" title="Перейти к быстрому оформлению заказа"><span>Оформить </span><span>заказ</span></a>
+		          <a id="closeOrder" class="button" title="Отменить заказ"><span>Отменить </span><span>заказ</span></a>
+	          </div>
 	          <noscript>
-	            <button type="submit" class="button button2" title="Пересчитать">Пересчитать</button>
-	            <button type="submit" class="button" name="next_step" title="Перейти к оформлению заказа в 4 шага"><span>Оформить </span><span>заказ</span></button>
+	            <button type="submit" class="button" title="Пересчитать">Пересчитать</button>
+	            <button type="submit" class="button button2" name="next_step" title="Перейти к оформлению заказа в 4 шага"><span>Оформить </span><span>заказ</span></button>
 	          </noscript>
 	        </div>
 	      </div>
@@ -80,6 +83,23 @@
     <div class="preloader top"><div class="loading"></div></div>
 	  <!-- Сюда грузится форма оформления быстрого заказа -->
     <div id="OrderAjaxBlock" style="display:none"></div>
+	  <div id="banners">
+		  <div class="banners__item">
+		    <i class="icon-credit-card"></i>
+		    <div class="banners__title">Безопасность</div>
+		    <div class="banners__text">Безопасность платежей гарантируется использованием SSL протокола. Данные вашей банковской карты надежно защищены при оплате онлайн.</div>
+		  </div>
+		  <div class="banners__item">
+			  <i class="icon-document"></i>
+			  <div class="banners__title">Гарантия</div>
+			  <div class="banners__text">Безопасность платежей гарантируется использованием SSL протокола. Данные вашей банковской карты надежно защищены при оплате онлайн.</div>
+		  </div>
+		  <div class="banners__item">
+			  <i class="icon-speech-bubbles"></i>
+			  <div class="banners__title">Техподдержка 24/7</div>
+			  <div class="banners__text">Безопасность платежей гарантируется использованием SSL протокола. Данные вашей банковской карты надежно защищены при оплате онлайн.</div>
+		  </div>
+	  </div>
   </div>
 </div>
 
