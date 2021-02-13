@@ -282,7 +282,7 @@ progress::-moz-progress-bar {background: #7ca4a3 fixed;}
 .form__fields .form__field {width: 100%;}
 .form__fields .form__field + .form__field {margin-top: 2rem;}
 .form__fields.two {-webkit-justify-content: space-between;justify-content: space-between;}
-.form__fields.two .form__field {width: 48%;display: -ms-flexbox;display: -webkit-flex;display: flex;-ms-flex-wrap: wrap;-webkit-flex-wrap: wrap;flex-wrap: wrap;-ms-flex-align: center;-webkit-align-items: center;-webkit-box-align: center;align-items: center;}
+.form__fields.two .form__field {width: 48%;margin-top: 0;display: -ms-flexbox;display: -webkit-flex;display: flex;-ms-flex-wrap: wrap;-webkit-flex-wrap: wrap;flex-wrap: wrap;-ms-flex-align: center;-webkit-align-items: center;-webkit-box-align: center;align-items: center;}
 .form__fields input {transition: all 0.3s ease;}
 .form__pp {font-size: 12px;margin-top: 1rem;}
 .form__pp a {text-decoration: underline;}
@@ -568,7 +568,7 @@ section {margin: 2rem 0;}
 /*** Страница: Оформление заказа ***/
 .stages__list {display: -ms-flexbox;display: -webkit-flex;display: flex;-ms-flex-wrap: wrap;-webkit-flex-wrap: wrap;flex-wrap: wrap;width: 100%;margin-bottom: 2rem;}
 .stages__list .stages {width: 25%;position: relative;font-size: 1.125rem;line-height: 2em;padding-top: 2rem;}
-.stages__list .stages:before {content: '\e92e';font-family: "icomoon";font-size: 36px;line-height: 1;padding-right: 5px;vertical-align: bottom;opacity: 0.5;filter: alpha(opacity=50);display: inline-block;text-rendering: auto;-webkit-font-smoothing: antialiased;transform: translate(0,0);}
+.stages__list .stages:before {content: '\e92f';font-family: "icomoon";font-size: 36px;line-height: 1;padding-right: 5px;vertical-align: bottom;opacity: 0.5;filter: alpha(opacity=50);display: inline-block;text-rendering: auto;-webkit-font-smoothing: antialiased;transform: translate(0,0);}
 .stages__list .stages:after {content: '';position: absolute;top: calc(50% + 1rem);left: 2rem;width: 70%;height: 2px;margin-top: -1px;background: #000000;opacity: 0.5;filter: alpha(opacity=50);}
 .stages__list .stages .title, .stages__list .stages a {display: block;width: 100%;height: 100%;position: absolute;top: 0;left: 0;font-size: 26px;line-height: 1;font-weight: 600;cursor: default;}
 .stages__list .stages a:hover .title {cursor: pointer;}
@@ -829,6 +829,10 @@ header .inner {padding: 3rem 0;align-items: center;justify-content: space-betwee
 .header__left {display: flex;align-items: center;width: 280px;}
 @media all and (max-width: 992px) {
 header .inner {padding: 2rem 0;}
+}
+@media all and (max-width: 767px) {
+header .inner {padding: 2rem 0 0 0;}
+header {border-bottom: 0;}
 }
 /* Меню */
 header .menu .menu__icon {font-size: 30px;line-height: 1;}
