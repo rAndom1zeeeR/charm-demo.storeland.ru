@@ -158,7 +158,8 @@ label.error:after {content: ' ';position: absolute;top: -7px;left: 0.875rem;widt
 .button2 {color: #000000;background: #bdd6d3;border-color: #bdd6d3;}
 .button2:hover, .button2.active {color: #000000;background: #facfb8;border-color: #facfb8;}
 .button3 {border: 0;}
-.button3:before {content: '';background-color: #facfb8;margin: -3px 1rem 0 0;width: 24px;height: 3px;display: inline-block;vertical-align: middle;}
+.button3:before {content: '';background-color: #facfb8;margin: -3px 1rem 0 0;width: 24px;height: 3px;display: inline-block;vertical-align: middle;transition: all 0.3s ease;}
+.button3:hover:before {height: 24px;transform: rotate(135deg);}
 .button3:hover, .button3.active {color: #ffffff;background: #000000;}
 .button4 {color: #000000;background: #facfb8;border-color: #facfb8;}
 .button4:hover, .button2.active {color: #000000;background: #bdd6d3;border-color: #bdd6d3;}
@@ -301,7 +302,7 @@ progress::-moz-progress-bar {background: #7ca4a3 fixed;}
 .table-box .hide {display: none;}
 
 /*** Навигация ***/
-.owl-nav {display: none;}
+/*.owl-nav {display: none;}*/
 .owl-nav [class^="owl-"] {width: 50px;height: 50px;transform: scale(1);color: #000000;background-color: #FFFFFF;box-shadow: none;border-radius: 0;font-size: 2rem;line-height: 1;font-family: 'icomoon';font-weight: normal;display: flex;align-items: center;justify-content: center;border: 0;padding: 0;cursor: pointer;z-index: 2;transition: all 0.3s ease;}
 .owl-nav [class^="owl-"]:hover {color: #7ca4a3;}
 .owl-nav [class^="owl-"]:active {transform: scale(1.4);}
@@ -312,8 +313,8 @@ progress::-moz-progress-bar {background: #7ca4a3 fixed;}
 .owl-nav.disable, .owl-nav [class^="owl-"].disable:hover {cursor: default;color: #dddddd;}
 .owl-nav.disabled {display: none;}
 /*** Навигация точками ***/
-.owl-dots {text-align: center;width: 100%;margin-top: 1rem;display: none;}
-.owl-dots .owl-dot {margin: 0 .5rem;width: 10px;height: 10px;background-color: #bdd6d3;border-color: #bdd6d3;transform: rotate(45deg);padding: 0;line-height: 1;display: inline-block;}
+.owl-dots {text-align: center;width: 100%;/*margin-top: 1rem;display: none;*/}
+.owl-dots .owl-dot {margin: 1rem .5rem;width: 10px;height: 10px;background-color: #bdd6d3;border-color: #bdd6d3;transform: rotate(45deg);padding: 0;line-height: 1;display: inline-block;}
 .owl-dots .owl-dot.active, .owl-dots .owl-dot:hover {background-color: #facfb8;border-color: #facfb8;}
 
 /*** Страницы ***/
@@ -364,7 +365,6 @@ section {margin: 2rem 0;}
 #page__title {text-align: center;margin-bottom: 2rem;}
 /* Заголовки с навигацией */
 .block__nav {margin-bottom: 3rem;display: flex;flex-wrap: wrap;align-items: center;justify-content: center;}
-.block__nav .owl-nav {margin-top: .5rem;}
 .block__nav .owl-nav [class^="owl-"] {position: absolute;top: calc(50% - 25px);}
 @media all and (max-width: 992px) {
 .block__title .title {font-size: 36px;}
@@ -1045,6 +1045,8 @@ header .logo {width: 100%;margin-top: 1rem;}
 #callback .callback__image {width: 500px;}
 }
 @media all and (max-width: 992px) {
+#choice {margin: 3rem 0 6rem;}
+.choice__item:nth-child(1) {margin-top: 0;}
 .choice__item:nth-child(1) .choice__image {width: 350px;height: 460px;top: 0;}
 .choice__item:nth-child(1) .choice__bg {background-position: center top;}
 .choice__item:nth-child(2) {margin-top: 8rem;}
@@ -1190,7 +1192,6 @@ footer .footer__block:nth-child(2) {margin-top: 2rem;}
 #pdt__best .product__links {position: relative;top: auto;left: auto;margin-top: 1.5rem;}
 
 /*** Вы смотрели ***/
-#viewed .block__nav {margin-bottom: 4rem;}
 #viewed .product__image .product__img {height: 202px;}
 #viewed .product__links {position: relative;top: auto;left: auto;margin-top: 1.5rem;}
 #viewed .product__ico {display: none;}
@@ -1198,7 +1199,6 @@ footer .footer__block:nth-child(2) {margin-top: 2rem;}
 
 
 /*** Распродажа ***/
-#pdt__sales .block__nav {align-items: flex-end;}
 #pdt__sales .block__nav .title {width: 100%;text-align: center;font-size: 40px;}
 #pdt__sales .inner {align-items: stretch;}
 #pdt__sales .pdt__products {width: 360px;padding-right: 1rem;}
@@ -1457,7 +1457,7 @@ footer .footer__block:nth-child(2) {margin-top: 2rem;}
 .opinion__ratings {margin-bottom: 2rem;}
 .opinion__text {margin-bottom: 1rem;max-height: 100px;overflow: hidden;}
 .opinion__text.active {max-height: 100%;}
-.opinion__name {margin-bottom: .5rem;font-size: 1rem;font-weight: bold;}
+.opinion__name {margin-bottom: .5rem;font-size: 1rem;font-weight: bold;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
 .opinion__title {margin-bottom: .5rem;}
 .opinion__delete {margin-top: 1rem;}
 .opinion__more {color: #36928a;font-family: 'Playfair Display', serif;display: block;margin-bottom: 1rem;}
