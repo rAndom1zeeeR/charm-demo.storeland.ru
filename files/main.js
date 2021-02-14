@@ -631,7 +631,7 @@ function goodspage() {
     navText: [ , ],
     dots: true,
     dotsContainer: '.productView__opinion .owl-dots',
-    autoHeight: false,
+    autoHeight: true,
     autoHeightClass: 'owl-height',
     autoplay: false,
     autoplayHoverPause: true,
