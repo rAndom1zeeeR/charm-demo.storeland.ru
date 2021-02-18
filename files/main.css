@@ -753,7 +753,7 @@ section {margin: 2rem 0;}
 .cart__actions {width: 100%;margin-top: 1rem;justify-content: flex-start;}
 .cart__delete {margin: 0 0 0 1rem;}
 .cart__delete a span {display: none;}
-.cart__delete a i {display: block;}
+.cart__delete a i {display: block;padding: 8px;font-size: 12px;border: 1px solid #e8e8e8;}
 .cart__price {width: 100%;display: flex;align-items: center;justify-content: flex-start;margin: 1rem 0 0 0;}
 .total__items {width: 100%;}
 .total__buttons {width: 100%;margin-top: 2rem;align-items: center;}
@@ -770,9 +770,11 @@ section {margin: 2rem 0;}
 
 /*** Количество ***/
 .qty {display: flex;align-items: center;flex-wrap: wrap;border: 1px solid #e8e8e8;}
-.qty a {font-size: 14px;width: 40px;height: 48px;display: flex;align-items: center;justify-content: center;}
+.qty a {color: #000000;font-size: 14px;width: 40px;height: 48px;position: relative;display: flex;align-items: center;justify-content: center;}
 .qty input {width: 40px;height: 48px;padding: 0 0.25rem;border: 0;text-align: center;}
-
+.qty a:before {content: '';opacity: 0;display: block;width: 24px;height: 24px;background-color: #facfb8;position: absolute;transition: 0.3s all ease;z-index: 1;}
+.qty a:hover:before {opacity: 1;transform: rotate(135deg);}
+.qty a i {position: relative;z-index: 2;}
 
 /*** Модальные окна ***/
 #fancybox__callback {max-width: 400px}
@@ -883,14 +885,6 @@ header .logo {width: 100%;margin-top: 1rem;}
 0% {transform: rotate(0deg);}
 100% {transform: rotate(360deg);}
 }
-@media all and (max-width: 992px) {
-.search__content {top: 1.5rem;}
-}
-@media all and (max-width: 767px) {
-.search__content {display: block;position: relative;top: auto;width: 100%;transform: scale(1);left: 0;right: 0;z-index: 1;}
-.search__input {background-color: #FFFFFF;border: 1px solid #e8e8e8;}
-.search__submit {width: 3.5rem;height: 3.5rem;line-height: 4rem;top: .25rem;right: .25rem;}
-}
 
 /** Поисковая выдача **/
 #search__result {display: none;width: 100%;max-height: 410px;position: absolute;right: 0;margin-top: 1rem;padding: 1rem;background: #fff;border: 1px solid #e8e8e8;overflow-y: auto;z-index: 3;}
@@ -923,13 +917,16 @@ header .logo {width: 100%;margin-top: 1rem;}
 .cart__icon .cart__count {position: absolute;top: -12px;right: 0;}
 @media all and (max-width: 992px) {
 #addto {width: 260px;}
+	.search__content {top: 1.5rem;}
 }
 @media all and (max-width: 767px) {
 #addto {width: 100%;margin-top: 2rem;justify-content: flex-start;}
+#addto .login, #addto .cart {display: none;}
 #addto .search__icon {display: none;}
 #addto .search {width: 100%;}
-.search__content {display: block;}
-#addto .login, #addto .cart {display: none;}
+.search__content {display: block;position: relative;top: auto;width: 100%;transform: scale(1);left: 0;right: 0;z-index: 1;}
+.search__input {background-color: #FFFFFF;border: 1px solid #e8e8e8;}
+.search__submit {width: 3.5rem;height: 3.5rem;line-height: 4rem;top: .25rem;right: .25rem;}
 }
 
 /***  ***/
