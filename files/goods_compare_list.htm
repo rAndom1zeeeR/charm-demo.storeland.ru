@@ -96,10 +96,10 @@
                   <a class="add-notify" title="Уведомить" data-tooltipOFF="Уведомить" rel="nofollow" data-fancybox data-src="#fancybox__notify" href="javascript:;" data-name="{goods_mod_info.NAME}" data-art="{goods_mod_info.ART_NUMBER}"><span>Уведомить</span></a>
                 {% ELSE %}
                   {% IF goods_mod_info.COUNT_MODIFICATION > 1 %}
-                  <a class="add-mod" title="Добавить в корзину &laquo;{goods_mod_info.NAME}&raquo;" data-tooltipOFF="В корзину" rel="nofollow" href="{goods_mod_info.URL_PRICE_NOW}" data-prodname="{goods_mod_info.NAME}"><span>Купить</span></a>
+                  <a class="add-mod" title="Добавить в корзину &laquo;{goods_mod_info.GOODS_NAME}&raquo;" data-tooltipOFF="В корзину" rel="nofollow" href="{goods_mod_info.URL_PRICE_NOW}" data-prodname="{goods_mod_info.GOODS_NAME}"><span>Купить</span></a>
                   {% ELSE %}
                   <!--a class="add-cart quick" title="Быстро оформить заказ" rel="nofollow" href="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={goods_mod_info.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={goods_mod_info.PRICE_NOW_ID}"><span>Купить</span></a-->
-                  <a class="add-cart" title="Добавить в корзину &laquo;{goods_mod_info.NAME}&raquo;" data-tooltipOFF="В корзину" rel="nofollow" href="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={goods_mod_info.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={goods_mod_info.PRICE_NOW_ID}"><span>Купить</span></a>
+                  <a class="add-cart" title="Добавить в корзину &laquo;{goods_mod_info.GOODS_NAME}&raquo;" data-tooltipOFF="В корзину" rel="nofollow" href="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={goods_mod_info.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={goods_mod_info.PRICE_NOW_ID}"><span>Купить</span></a>
                   {% ENDIF %}
                 {% ENDIF %}
                 <!-- /END Добавление товара в корзину -->
