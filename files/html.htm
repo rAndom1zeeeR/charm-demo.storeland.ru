@@ -1818,10 +1818,111 @@
 		</div>
 	</footer>
 	
+	<!-- Боковое меню Сайдбар -->
+	<div id="sidebar">
+		<div class="sidebar__links">
+			<!-- Корзина -->
+			{% IFNOT MOD_LNAME = cart %}
+			<div class="cart {% IF CART_COUNT_TOTAL > 0 %}hasItems{% ENDIF %}">
+				<a href="{CART_URL}" title="Корзина" class="sidebar__icon dropdown__open" data-open="cart">
+					<i class="icon-cart"></i>
+					<span class="count" data-count="{CART_COUNT_TOTAL}">{CART_COUNT_TOTAL}</span>
+				</a>
+			</div>
+			{% ENDIF %}
+			<!-- Сравнение -->
+			{% IFNOT MOD_LNAME = compare && SETTINGS_COMPARE_DISABLE=0 %}
+			<div class="compare {% IF COMPARE_GOODS_COUNT > 0 %}hasItems{% ENDIF %}">
+				<a href="{COMPARE_URL}" title="Сравнение" class="sidebar__icon dropdown__open" data-open="compare">
+					<i class="icon-compare"></i>
+					<span class="count" data-count="{COMPARE_GOODS_COUNT}">{COMPARE_GOODS_COUNT}</span>
+				</a>
+			</div>
+			{% ENDIF %}
+			<!-- Сохраненное -->
+			<div class="favorites {% IF FAVORITES_GOODS_COUNT > 0 %}hasItems{% ENDIF %}">
+				<a href="{FAVORITES_URL}" title="Сохраненное" class="sidebar__icon dropdown__open" data-open="favorites">
+					<i class="icon-favorites"></i>
+					<span class="count" data-count="{FAVORITES_GOODS_COUNT}">{FAVORITES_GOODS_COUNT}</span>
+				</a>
+			</div>
+		</div>
+		<!-- Наверх -->
+		<div class="toTop sidebar__links">
+			<div class="sidebar__icon"><i class="icon-up-arrow"></i></div>
+		</div>
+		<!-- Сравнение -->
+		<div id="addtoCompare" class="addto__compare dropdown__content {% IF COMPARE_GOODS_COUNT > 0 %}hasItems{% ENDIF %}" data-open="compare">
+			<div class="dropdown__title">
+				<span class="dropdown__label">Сравнение</span>
+				<span class="dropdown__close"><i class="icon-close"></i></span>
+			</div>
+			<div class="dropdown__inner">
+				<div class="addto__items">
+					{% FOR compare_goods %}
+					<div class="addto__item" data-id="{compare_goods.ID}">
+						<a href="{compare_goods.URL}" title="{compare_goods.NAME}" class="addto__image"><img src="{% IF compare_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-icon.png?design=THEMENAME{% ELSE %}{compare_goods.IMAGE_ICON}{% ENDIF %}" class="goods-image-icon" /></a>
+						<div class="addto__shop">
+							<!-- Название -->
+							<a href="{compare_goods.URL}" class="addto__name" title="{compare_goods.NAME}"><span>{compare_goods.NAME}</span></a>
+							<!-- Цена -->
+							<div class="addto__price {CURRENCY_CHAR_CODE}">
+								<div class="price__now">{compare_goods.MIN_PRICE_NOW | money_format}</div>
+								<!-- Удаление -->
+								<a href="{COMPARE_DELETE_URL}?id={compare_goods.MIN_PRICE_NOW_ID}" data-goods-mod-id="{compare_goods.MIN_PRICE_NOW_ID}" class="addto__remove remove" title="Убрать товар из списка сравнения" onclick="removeFromCompare($(this))"><span>Удалить</span></a>
+							</div>
+						</div>
+					</div>
+					{% ENDFOR %}
+				</div>
+				<div class="addto__empty">
+					<div class="addto__title">Ваш список сравнения пуст</div>
+					<a href="{CATALOG_URL}" class="button addto__close" title="Продолжить покупки">Продолжить покупки</a>
+				</div>
+				<div class="addto__buttons">
+					<a href="{COMPARE_RESET_URL}" onclick="removeFromCompareAll($(this))" class="button button2 removeAll" title="Очистить список сравнения"><span>Очистить сравнение</span></a>
+					<a href="{COMPARE_URL}" class="button" title="Перейти к Сравнению">Перейти к Сравнению</a>
+				</div>
+			</div>
+		</div>
+		<!-- Сохраненное -->
+		<div id="addtoFavorites" class="addto__favorites dropdown__content {% IF FAVORITES_GOODS_COUNT > 0 %}hasItems{% ENDIF %}" data-open="favorites">
+			<div class="dropdown__title">
+				<span class="dropdown__label">Избранное</span>
+				<span class="dropdown__close"><i class="icon-close"></i></span>
+			</div>
+			<div class="dropdown__inner">
+				<div class="addto__items">
+					{% FOR favorites_goods %}
+					<div class="addto__item" data-id="{favorites_goods.ID}">
+						<a href="{favorites_goods.URL}" title="{favorites_goods.NAME}" class="addto__image"><img src="{% IF favorites_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-icon.png?design=THEMENAME{% ELSE %}{favorites_goods.IMAGE_ICON}{% ENDIF %}" class="goods-image-icon" /></a>
+						<div class="addto__shop">
+							<!-- Название -->
+							<a href="{favorites_goods.URL}" class="addto__name" title="{favorites_goods.NAME}">{favorites_goods.NAME}</a>
+							<!-- Цена -->
+							<div class="addto__price {CURRENCY_CHAR_CODE}">
+								<div class="price__now">{favorites_goods.MIN_PRICE_NOW | money_format}</div>
+								<!-- Удаление -->
+								<a href="{FAVORITES_DELETE_URL}?id={favorites_goods.MIN_PRICE_NOW_ID}" data-goods-mod-id="{favorites_goods.MIN_PRICE_NOW_ID}" class="addto__remove remove" title="Убрать товар из списка избранного" onclick="removeFromFavorites($(this))"><span>Удалить</span></a>
+							</div>
+						</div>
+					</div>
+					{% ENDFOR %}
+				</div>
+				<div class="addto__empty">
+					<div class="addto__title">Ваш список избранного пуст</div>
+					<a href="{CATALOG_URL}" class="button addto__close" title="Продолжить покупки">Продолжить покупки</a>
+				</div>
+				<div class="addto__buttons">
+					<a href="{FAVORITES_RESET_URL}" onclick="removeFromFavoritesAll($(this))" class="button button2 removeAll" title="Очистить список Избранного"><span>Очистить Избранное</span></a>
+					<a href="{FAVORITES_URL}" class="button" title="Перейти к Избранному">Перейти к Избранному</a>
+				</div>
+			</div>
+		</div>
+	</div>
 	
 	<!-- Модальные окна -->
 	<noindex>
-		<div class="toTop"><i class="icon-up-chevron"></i></div>
 		<!-- Скрытое обновление корзины -->
 		<div class="hiddenUpdate" style="display: none;"></div>
 		<!-- Политика конфиденциальности в модальном окне -->

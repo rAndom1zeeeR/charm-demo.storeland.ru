@@ -3284,17 +3284,18 @@ function openMenu() {
   // Открытие элементов
   $('.dropdown__open').on('click', function(event){
     event.preventDefault();
+    $('div').removeClass('opened');
     let value = $(this).data('open');
     if ($('.dropdown__content[data-open="'+ value +'"]').hasClass('opened')){
       $(this).removeClass('opened');
       $(this).parent().removeClass('opened');
+      $('.sidebar__links').removeClass('opened');
       $('#overlay').removeClass('opened');
       $('.dropdown__content[data-open="'+ value +'"]').removeClass('opened');
     }else{
-      $('.dropdown__open').removeClass('opened');
-      $('.dropdown__content').removeClass('opened');
       $(this).addClass('opened');
       $(this).parent().addClass('opened');
+      $('.sidebar__links').addClass('opened');
       $('#overlay').addClass('opened');
       $('.dropdown__content[data-open="'+ value +'"]').addClass('opened');
     }
