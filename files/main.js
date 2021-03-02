@@ -654,7 +654,7 @@ function goodspage() {
 
 
   // Функция показать больше для Отзывов
-  let opinionContent = $('.productView__opinion');
+  /*let opinionContent = $('.productView__opinion');
   let opinionCount = opinionContent.find('.opinion__item').length;
   if(opinionCount<=3){ opinionContent.find('.opinion__buttons').hide(); }
   opinionContent.find('.opinion__buttons .showAll').on('click',function(event){
@@ -668,7 +668,7 @@ function goodspage() {
       opinionContent.find('.opinion__item').addClass('show');
       $('html, body').animate({scrollTop : opinionContent.offset().top + $(window).height()}, 800);
     }
-  });
+  });*/
   // Переключение для Положительный и Отрицательный отзыв
   $('.generally label').on('click', function(event){
     event.preventDefault();
@@ -2661,10 +2661,10 @@ function startOrder(){
       OrderAjaxBlock.html($(data).find('.fastOrder').wrap('<div></div>').html());
       OrderAjaxBlock.show('slow');
       $('html, body').delay(400).animate({scrollTop : jQuery('#globalOrder').offset().top}, 800);
-      coupons();
+      showPass();
       OrderScripts();
       OrderScriptsSelect();
-      showPass();
+      coupons();
       // Стили для новых селектов
       /*setTimeout(() => $('.select').styler(), 100)*/
       $(".form__phone").mask("+7 (999) 999-9999");
@@ -2716,10 +2716,10 @@ function coupons() {
   var couponInput = $('#coupon__code');
   var resetBtn = $('.coupon__reset');
   submitBtn.on('click', function(){
-    let url = '/order/stage/confirm';
-    let val = couponInput.val();
+    var url = '/order/stage/confirm';
+    var val = couponInput.val();
     // Получаем данные формы, которые будем отправлять на сервер
-    let formData = $('#myform').serializeArray();
+    var formData = $('#myform').serializeArray();
     formData.push({name: 'ajax_q', value: 1});
     formData.push({name: 'only_body', value: 1});
     formData.push({name: 'form[coupon_code]', value: val});
@@ -2734,6 +2734,11 @@ function coupons() {
         let discountName = discountBlock.find('.name').text();
         let discountPercent = discountBlock.find('.percent').text();
         let totalBlock = $(data).closest('#myform').find('.total');
+        console.log('oldQuickPrice', oldQuickPrice)
+        console.log('discountBlock', discountBlock)
+        console.log('discountName', discountName)
+        console.log('discountPercent', discountPercent)
+        console.log('totalBlock', totalBlock)
         // Записываем название и размер скидки по купону
         $('.total__coupons .total__label span').html(discountName);
         $('.total__coupons .cartSumCoupons').html(discountPercent);
@@ -2743,8 +2748,9 @@ function coupons() {
         let totalSum = totalBlock.find('.total-sum').data('total-sum');
         let deliveryPrice = parseInt($('.cartSumDelivery .num').text());
         let newTotalSum = totalSum + deliveryPrice;
-        let cartSum = $('.cartSumTotal').data('value');
-        if (totalSum > cartSum) {
+        console.log('newTotalSum = totalSum + deliveryPrice', newTotalSum,'+', totalSum,'+', deliveryPrice)
+        console.log()
+        if (totalSum > oldQuickPrice) {
           couponInput.parent().addClass('error');
           couponInput.parent().removeClass('active');
           couponInput.val("").attr("placeholder", "Купон неверен");

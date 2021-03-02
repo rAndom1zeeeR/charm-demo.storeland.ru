@@ -684,14 +684,15 @@ section {margin: 2rem 0;}
 }
 /** Купоны **/
 .coupon__button {line-height: 40px;right: 4px;position: absolute;display: flex;align-items: center;justify-content: center;transition: all 0.3s ease;}
-.coupon__order.active .coupon__button:before {content: '\e92b';}
-.coupon__order.error .coupon__button:before {content: '\e903';}
-.coupon__reset {display: none;position: absolute;right: 70px;line-height: 1;cursor: pointer;}
+.coupon__button:before {font-family: 'icomoon';}
+/*.coupon__order.active .coupon__button span {display: none;}
+.coupon__order.active .coupon__button:before {content: '\e91b';}
+.coupon__order.error .coupon__button:before {content: '\e914';}*/
+.coupon__reset {display: none;position: absolute;right: 12rem;line-height: 1;cursor: pointer;}
 .coupon__reset.active {display: block;}
-.coupon__reset:after {content: "\e903";font-family: 'icomoon';}
+.coupon__reset:after {content: "\e900";font-family: 'icomoon';}
 .coupon__order input:focus + .coupon__button {}
 .coupon__order.error input {border-color: red;}
-.coupon__order.error input + .coupon__button {border-color: red;}
 @media all and (max-width: 480px) {
 .coupon__button {position: relative;right: auto;margin-top: 1rem;}
 }
@@ -1263,6 +1264,10 @@ footer .footer__block:nth-child(2) {margin-top: 2rem;}
 .products__grid .product__ico span:nth-child(4) {margin-top: 1rem;}
 @media all and (max-width: 992px) {
 .products__grid .product__item {width: calc(50% - 2rem);}
+}
+@media all and (max-width: 640px) {
+.products__grid .product__ico {width: 60px;}
+.products__grid .product__ico span + span {margin: 1rem 0 0 0;}
 }
 @media all and (max-width: 479px) {
 .products__grid .product__item {width: 100%;}
