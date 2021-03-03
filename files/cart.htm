@@ -23,9 +23,10 @@
 	                <input type="text" name="form[quantity][{cart_items.GOODS_MOD_ID}]" maxlength="4" value="{cart_items.ORDER_LINE_QUANTITY}" max="{cart_items.GOODS_MOD_REST_VALUE}" title="Количество, {cart_items.GOODS_MOD_MEASURE_NAME}" class="cartqty" onkeypress="return keyPress(this, event);" onpaste="return false;" autocomplete="off" />
 	                <a href="javascript:void(0)" class="qty__plus unselectable" title="Увеличить"><i class="icon-plus"></i></a>
 	              </div>
+		            <div class="cart__delete"><a data-href="{cart_items.ORDER_LINE_DELETE_URL}" title="Удалить позицию" onclick="cartDelete($(this))" class="remove"><i class="icon-close"></i></a></div>
 		            <div class="cart__price">
 		              <div class="cartPriceTotal price__now">{cart_items.ORDER_LINE_PRICE_NOW | money_format}</div>
-			            <div class="cart__delete"><a data-href="{cart_items.ORDER_LINE_DELETE_URL}" title="Удалить позицию" onclick="cartDelete($(this))" class="remove"><i class="icon-close"></i><span>Удалить товар</span></a></div>
+			            <div class="cart__delete"><a data-href="{cart_items.ORDER_LINE_DELETE_URL}" title="Удалить позицию" onclick="cartDelete($(this))" class="remove"><span>Удалить товар</span></a></div>
 		            </div>
 	            </div>
 	          </div>

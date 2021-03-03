@@ -279,7 +279,7 @@
 				{% FOR catalog_full %}
 				{% IF catalog_full.LEVEL = 0 %}
 				<div class="categories__item" data-id="{catalog_full.ID}">
-					<a href="{catalog_full.URL}" class="categories__image"><img src="{% IF catalog_full.IMAGE_MEDIUM %}{catalog_full.IMAGE_MEDIUM}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo-small.png?design=THEMENAME{% ENDIF %}" class="goods-image-medium"/></a>
+					<a href="{catalog_full.URL}" class="categories__image"><img data-src="{% IF catalog_full.IMAGE_MEDIUM %}{catalog_full.IMAGE_MEDIUM}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo-small.png?design=THEMENAME{% ENDIF %}" class="goods-image-medium owl-lazy"/></a>
 					<a href="{catalog_full.URL}" class="categories__name">{catalog_full.NAME}</a>
 				</div>
 				{% ENDIF %}
@@ -888,7 +888,7 @@
 							</div>
 						</div>
 						<div class="choice__image">
-							<div class="choice__bg" style="background-image: url('{ASSETS_IMAGES_PATH}choice_1.jpg?design=THEMENAME');"></div>
+							<div class="choice__bg lozad" data-background-image="{ASSETS_IMAGES_PATH}choice_1.jpg?design=THEMENAME"></div>
 						</div>
 					</div>
 				</div>
@@ -897,7 +897,7 @@
 				<div class="container">
 					<div class="choice__inner">
 						<div class="choice__image">
-							<div class="choice__bg" style="background-image: url('{ASSETS_IMAGES_PATH}choice_2.jpg?design=THEMENAME');"></div>
+							<div class="choice__bg lozad" data-background-image="{ASSETS_IMAGES_PATH}choice_2.jpg?design=THEMENAME"></div>
 						</div>
 						<div class="choice__content">
 							<div class="choice__title">
@@ -1127,7 +1127,7 @@
 					</div>
 				</form>
 				<div class="callback__image">
-					<div class="callback__bg" style="background-image: url('{ASSETS_IMAGES_PATH}callback.jpg?design=THEMENAME')"></div>
+					<div class="callback__bg lozad" data-background-image="{ASSETS_IMAGES_PATH}callback.jpg?design=THEMENAME"></div>
 				</div>
 			</div>
 		</div>
@@ -1758,10 +1758,10 @@
 					<span class="count" data-count="{FAVORITES_GOODS_COUNT}">{FAVORITES_GOODS_COUNT}</span>
 				</a>
 			</div>
-		</div>
-		<!-- Наверх -->
-		<div class="toTop sidebar__links">
-			<div class="sidebar__icon"><i class="icon-up-arrow"></i></div>
+			<!-- Наверх -->
+			<div class="toTop sidebar__links">
+				<div class="sidebar__icon"><i class="icon-up-arrow"></i></div>
+			</div>
 		</div>
 		<!-- Корзина -->
 		<div id="addtoCart" class="addto__cart dropdown__content right {% IF CART_COUNT_TOTAL > 0 %}hasItems{% ENDIF %}" data-open="cart">

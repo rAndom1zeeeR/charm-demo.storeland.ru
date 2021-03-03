@@ -2734,11 +2734,6 @@ function coupons() {
         let discountName = discountBlock.find('.name').text();
         let discountPercent = discountBlock.find('.percent').text();
         let totalBlock = $(data).closest('#myform').find('.total');
-        console.log('oldQuickPrice', oldQuickPrice)
-        console.log('discountBlock', discountBlock)
-        console.log('discountName', discountName)
-        console.log('discountPercent', discountPercent)
-        console.log('totalBlock', totalBlock)
         // Записываем название и размер скидки по купону
         $('.total__coupons .total__label span').html(discountName);
         $('.total__coupons .cartSumCoupons').html(discountPercent);
@@ -2748,8 +2743,6 @@ function coupons() {
         let totalSum = totalBlock.find('.total-sum').data('total-sum');
         let deliveryPrice = parseInt($('.cartSumDelivery .num').text());
         let newTotalSum = totalSum + deliveryPrice;
-        console.log('newTotalSum = totalSum + deliveryPrice', newTotalSum,'+', totalSum,'+', deliveryPrice)
-        console.log()
         if (totalSum > oldQuickPrice) {
           couponInput.parent().addClass('error');
           couponInput.parent().removeClass('active');
