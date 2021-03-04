@@ -793,7 +793,7 @@ function catalog() {
   });
 
   // Фильтры открыть
-  $('.filters__icon').on('click', function(event){
+  $('.filters__open').on('click', function(event){
     event.preventDefault();
     if ($(this).parent().parent().hasClass('opened')) {
       $(this).removeClass('opened');
@@ -823,8 +823,8 @@ function priceFilter() {
   function priceInputsChangeWidthByChars() {
     // Если есть блок указания минимальной цены
     if(priceInputMin.length) {
-      priceInputMin.css('width', (priceInputMin.val().length*7 + 30) + 'px');
-      priceInputMax.css('width', (priceInputMax.val().length*7 + 50) + 'px');
+      priceInputMin.css('width', (priceInputMin.val().length*8 + 30) + 'px');
+      priceInputMax.css('width', (priceInputMax.val().length*8 + 50) + 'px');
     }
   }
   
@@ -3731,8 +3731,144 @@ $(document).ready(function(){
 });
 
 
+//Функции для удобства
+function addActive(obj){obj.addClass('active');}
+function removeActive(obj){obj.removeClass('active')}
 
+function gridPage(){
+  $('.filter .filter_block_name').on('click',function(){
+    Visibility = $(this).parent().hasClass('active');
+    HeaderSelector = $(this).parent();
+    Visibility == false ? addActive(HeaderSelector) : removeActive(HeaderSelector);
+    currentObj = $(this).parent();
+    $('.filter').not(currentObj).each(function(){
+      $(this).removeClass('active');
+    })
+  })
+  $(document).mouseup(function (e) {
+    var container = $(".filter.active");
+    if (container.has(e.target).length === 0 ){
+      removeActive($('.filter.active'));
+    }
+  });
+  $(function(){
+    $(document).click(function(event) {
+      if ($(event.target).closest(".filter.active").length) return;
+      $(".filter.active").removeClass("active");
+      $('.contentTbodySearchFilterBlockValues.active').removeClass('active');
+      $('.open-filters.active').removeClass('active');
+      event.stopPropagation();
+    });
+  })
+  $(function(){
+    $('.open-filters').click(function(){
+      if($(this).parent().find('.open-filters.active').length){
+        $(this).removeClass('active');
+        $(this).parent().parent().find('.contentTbodySearchFilterBlockValues').removeClass('active');
+        $(this).parent().parent().removeClass('active');
+      }else{
+        $('.open-filters').removeClass('active');
+        $('.open-filters').parent().parent().find('.contentTbodySearchFilterBlockValues').removeClass('active');
+        $('.open-filters').parent().parent().removeClass('active');
+        $(this).addClass('active');
+        $(this).parent().parent().find('.contentTbodySearchFilterBlockValues').addClass('active');
+        $(this).parent().parent().addClass('active');
+      }
 
+    })
 
+  })
+  $(function(){
+    $('.contentTbodySearchFilterBlockValues input[type="checkbox"]').click(function(){
+      a = 0;
+      $(this).parent().parent().find('input[type="checkbox"]').each(function(){
+        if($(this).prop('checked') == true){
+          a++;
+        }
+        return a;
+      })
+      if(a != 0){
+        $(this).parent().parent().parent().find('sup').text(a);
+        $(this).parent().parent().parent().find('.clearThisFilter').show();
+        $(this).parent().parent().parent().find('.filter_block_name').addClass('haveCheck');
+        if($('.filter_buttons').hasClass('active')){}else{$('.filter_buttons').addClass('active')}
+      }else{
+        $(this).parent().parent().parent().find('sup').text('');
+        $(this).parent().parent().parent().find('.clearThisFilter').hide();
+        $(this).parent().parent().parent().find('.filter_block_name').removeClass('haveCheck');
+        $('.filter_buttons').removeClass('active');
+      }
+    });
+  })
+  $(function(){
+    $('.one-filter').each(function(){
+      a = 0;
+      $(this).find('input[type="checkbox"]').each(function(){
+        if($(this).prop('checked') == true){
+          a++;
+        }
+        return a;
+      })
+      if(a != 0){
+        $(this).find('sup').text(a);
+        $(this).find('.filter_block_name').addClass('haveCheck');
+        $(this).find('.clearThisFilter').show();
+      }else{
+        $(this).find('.filter_block_name').removeClass('haveCheck');
+        $(this).find('.clearThisFilter').hide();
+      }
+    })
+  })
+  $(function(){
+    $('.one-filter').each(function(){
+      $(this).find('input[type="checkbox"]').each(function(){
+        if($(this).prop('checked') == true){
+          $('.filter_header').addClass('active');
+          $('.mainfilters').show();
+          $('.filter_buttons').addClass('active');
+          return false;
+        }
+      })
+    })
+  })
+  $(function(){
+    $('.clearThisFilter').click(function(){
+      if(confirm('Вы точно хотите очистить данный фильтр?')){
+        $(this).parent().parent().find('.filter-inner').hide();
+        $(this).parent().parent().find('input[type="checkbox"]').prop('checked',false);
+        $(this).parent().parent().removeClass('active');
+        $('.filters-button').click();
+      }
+    })
+  })
+  $(function(){
+    /*Скрипт для удобства юзера, который применяет фильтры. После применения фильтра на экране устройства сразу будут показаны товары и юзеру не придется скроллить вниз.*/
+    sLength = $('.ScrollTo').length;
+    if(sLength > 0){
+      if(getClientWidth() < 760){
+        sTop = $('.ScrollTo').offset();
+        $(window).scrollTop(sTop.top);
+      }
+    }
+    /*Скрипт для сворачивания и разворачивания блока с фильтрами на маленьких экранах*/
+    $('.filters .block-title').on('click',function(){
+      if(getClientWidth() < 760){
+        $(this).parent().hasClass('active') ? $(this).parent().removeClass('active') : $(this).parent().addClass('active');
+      }
+    })
+
+  })
+}
+
+function addFilterAlert(obj){
+  buttonsHtml = $('.filter_buttons').wrap('<div class="filterResultMsg"></div>');
+  obj.append(buttonsHtml);
+}
+$(function(){
+  $('.one_input input').on('click',function(){
+    obj = $(this).parent().parent();
+    addFilterAlert(obj);
+  })
+})
 
 

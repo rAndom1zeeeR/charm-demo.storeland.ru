@@ -69,9 +69,6 @@
         </select>
       </div>
       <!-- /END Показывать по: -->
-	    {% IF SHOW_GOODS_PRICE_FILTERS || SHOW_GOODS_FILTERS %}
-	    <div class="filters__icon {% FOR filter_attr_list %}{% FOR values %}{% IF filter_attr_list.values.CHECKED %}hasFilters {% ENDIF %}{% ENDFOR %}{% ENDFOR %} {% FOR filter_prop_list %}{% FOR values %}{% IF filter_prop_list.values.CHECKED %}hasFilters {% ENDIF %}{% ENDFOR %}{% ENDFOR %}"><span>Фильтры</span></div>
-	    {% ENDIF %}
       <!-- Вид Таблица/Список -->
       <div class="view__type">
         {% IF GOODS_VIEW_TYPE=1 %}
@@ -83,7 +80,91 @@
         {% ENDIF %}
       </div>
       <!-- /END Вид Таблица/Список -->
-    </form>
+    </form>    {% IF TARIFF_FEATURE_GOODS_FILTERS && SHOW_GOODS_FILTERS %}
+	  <!-- Чекбокс фильтры -->
+	  <div class="filters">
+		  <div class="block__title filters__open">
+			  <div class="title"><span>Фильтры</span></div>
+		  </div>
+		  <form action="" method="get">
+			  <!-- Чекбокс фильтры -->
+			  <div class="row">
+				  <div class="allfilters filters-goods">
+					  {% IF SHOW_GOODS_PRICE_FILTERS %}
+					  <div class="one-filter">
+						  <div class="filters-price filter">
+							  <div class="filter_block_name unselectable" title='Фильтровать товары по цене'><span class="filter_name">Цена</span><sup class="sup_number"></sup><div class="clearThisFilter"><span class="fa fa-close"></span></div> <span class="svg-arrowdown"></span><span class="svg-arrowup"></span></div>
+							  <div class="layout-slider filter-inner">
+								  <input id="goods-filter-min-price" class="inputText" type="text" name="form[filter][price][min]" value="{% IF GOODS_FILTER_MIN_PRICE %}{GOODS_FILTER_MIN_PRICE}{% ELSE %}{GOODS_FILTER_MIN_AVAILABLE_PRICE}{% ENDIF %}" min="1" onkeypress="return keyPress(this, event);" onpaste="return false;" />
+								  <span class="price-separator">-</span>
+								  <input id="goods-filter-max-price" class="inputText" type="text" name="form[filter][price][max]" value="{% IF GOODS_FILTER_MAX_PRICE %}{GOODS_FILTER_MAX_PRICE}{% ELSE %}{GOODS_FILTER_MAX_AVAILABLE_PRICE}{% ENDIF %}" min="1" onkeypress="return keyPress(this, event);" onpaste="return false;" />
+								  <input type="hidden" name="form[filter][available_price][min]" value="{GOODS_FILTER_MIN_AVAILABLE_PRICE}" />
+								  <input type="hidden" name="form[filter][available_price][max]" value="{GOODS_FILTER_MAX_AVAILABLE_PRICE}" />
+								  <!-- Фильтры по цене -->
+								  <div class="goodsFilterPriceRangePointers">
+									  <span class="min" style="display:none;">{GOODS_FILTER_MIN_AVAILABLE_PRICE}</span>
+									  <span class="max" style="display:none;">{GOODS_FILTER_MAX_AVAILABLE_PRICE}</span>
+								  </div>
+								  <div id="goods-filter-price-slider"></div>
+								  <div class="goodsFilterPriceSubmit">
+									  <button class="button button2 small" type="submit" title="Показать">Показать</button>
+								  </div>
+							  </div>
+						  </div>
+					  </div>
+					  {% ENDIF %}
+					  {% FOR filter_attr_list %}
+					  <div class="one-filter">
+						  <div class="filter table" data-filter-id="{filter_attr_list.ID}">
+							  <div class="filter_block_name" title='Выбрать фильтры по характеристике : "{filter_attr_list.NAME}"'>
+								  <span class="filter_name">{filter_attr_list.NAME}</span>
+								  <sup class="sup_number" title="Колличество активных фильтров"></sup>
+								  <div class="clearThisFilter" title='Очистить фильтр "{filter_attr_list.NAME}"'><span class="icon-close"></span></div>
+								  <i class="icon-down-chevron"></i>
+							  </div>
+							  <div class="contentTbodySearchFilterBlockValues filter-inner">
+								  {% FOR values %}
+								  <div class="one_input {% IF filter_attr_list.values.NB_GOODS_FILTERED=0 %}disabled{% ENDIF %}">
+									  <input type="checkbox" class="square" name="form[filter][attr][{filter_attr_list.ID}][{filter_attr_list.values.ID}]" value="1" id="filterAttrVal{filter_attr_list.values.ID}" {% IF filter_attr_list.values.CHECKED %}checked="checked"{% ELSEIF filter_attr_list.values.NB_GOODS_FILTERED=0 %}disabled="disabled"{% ENDIF %} />
+									  <label for="filterAttrVal{filter_attr_list.values.ID}">{filter_attr_list.values.VALUE} ({filter_attr_list.values.NB_GOODS_FILTERED})</label>
+								  </div>
+								  {% ENDFOR %}
+							  </div>
+						  </div>
+					  </div>
+					  {% ENDFOR %}
+					  <!-- Фильтры по свойствам товарных модификаций (Например: Цвет, размер, модификация) -->
+					  {% FOR filter_prop_list %}
+					  <div class="one-filter ">
+						  <div class="filter table" data-filter-id="{filter_prop_list.ID}">
+							  <div class="filter_block_name" title='Выбрать фильтры по модификации : "{filter_prop_list.NAME}"'>
+								  <span class="filter_name">{filter_prop_list.NAME}</span>
+								  <sup class="sup_number"></sup>
+								  <div class="clearThisFilter" title="Очистить этот фильтр"><span class="fa fa-close"></span></div>
+								  <i class="icon-down-chevron"></i>
+							  </div>
+							  <div class="contentTbodySearchFilterBlockValues filter-inner">
+								  {% FOR values %}
+								  <div class="one_input {% IF filter_prop_list.values.NB_GOODS_FILTERED=0 %}disabled{% ENDIF %}">
+									  <input type="checkbox" class="square" name="form[filter][prop][{filter_prop_list.ID}][{filter_prop_list.values.ID}]" value="1" id="filterPropVal{filter_prop_list.values.ID}" {% IF filter_prop_list.values.CHECKED %}checked="checked"{% ELSEIF filter_prop_list.values.NB_GOODS_FILTERED=0 %}disabled="disabled"{% ENDIF %} >
+									  <label for="filterPropVal{filter_prop_list.values.ID}">{filter_prop_list.values.VALUE} ({filter_prop_list.values.NB_GOODS_FILTERED})</label>
+								  </div>
+								  {% ENDFOR %}
+							  </div>
+						  </div>
+					  </div>
+					  {% ENDFOR %}
+					  <div class="filter_buttons">
+						  <a href="{PAGE_CANONICAL}" class="button small clear_all_filters" title="Очистить все фильтры">Очистить</a>
+						  <button type="submit" class="button small filters-button" title="Применить выбранные фильтры">Показать</button>
+					  </div>
+				  </div>
+			  </div>
+		  </form>
+	  </div>
+	  <!-- END Чекбокс фильтры -->
+  </div>
+	{% ENDIF %}
   </div>
   <!-- END Верхний блок, изменяющий отображение данных выдачи товаров -->
   <!-- Вывод товаров -->
