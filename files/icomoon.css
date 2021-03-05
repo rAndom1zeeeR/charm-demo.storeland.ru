@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?ct7snw');
-  src:  url('fonts/icomoon.eot?ct7snw#iefix') format('embedded-opentype'),
-  url('fonts/icomoon.ttf?ct7snw') format('truetype'),
-  url('fonts/icomoon.woff?ct7snw') format('woff'),
-  url('fonts/icomoon.svg?ct7snw#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?6dqhiz');
+  src:  url('fonts/icomoon.eot?6dqhiz#iefix') format('embedded-opentype'),
+  url('fonts/icomoon.ttf?6dqhiz') format('truetype'),
+  url('fonts/icomoon.woff?6dqhiz') format('woff'),
+  url('fonts/icomoon.svg?6dqhiz#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-yandex:before {
+  content: "\e93f";
+}
 .icon-star:before {
   content: "\e93e";
 }
@@ -49,7 +52,7 @@
 .icon-webmoney:before {
   content: "\e93b";
 }
-.icon-yandex:before {
+.icon-yandex_old:before {
   content: "\e93c";
 }
 .icon-yandexmoney:before {
