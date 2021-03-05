@@ -1733,6 +1733,13 @@
 	<!-- Боковое меню Сайдбар -->
 	<div id="sidebar">
 		<div class="sidebar__links">
+			<!-- Меню -->
+			<div class="menu">
+				<a href="#" title="Меню" class="sidebar__icon dropdown__open" data-open="catalogMenu">
+					<i class="icon-menu"></i>
+					<span class="count" data-count="{CART_COUNT_TOTAL}">{CART_COUNT_TOTAL}</span>
+				</a>
+			</div>
 			<!-- Корзина -->
 			{% IFNOT MOD_LNAME = cart %}
 			<div class="cart {% IF CART_COUNT_TOTAL > 0 %}hasItems{% ENDIF %}">
