@@ -958,13 +958,14 @@ header .logo {width: 100%;margin-top: 2rem;}
 #addtoCatalog .catalog__link {padding: 1rem 2rem;display: flex;flex-wrap: nowrap;align-items: center;}
 #addtoCatalog .catalog__link:hover {background-color: #f0f6f5;color: #000000;}
 /*#addtoCatalog .catalog__link > span {max-width: calc(100% - 2.5rem);}*/
-#addtoCatalog .catalog__item .open {margin-left: 0.5rem;vertical-align: middle;width: 2rem;height: 2rem;line-height: 30px;display: inline-block;text-align: center;}
+#addtoCatalog .catalog__item .open {margin-left: 0.5rem;vertical-align: middle;width: 1.25rem;height: 1.25rem;line-height: 1.25rem;display: inline-block;text-align: center;}
 #addtoCatalog .catalog__item .open:before {content: "\e904";font-family: 'icomoon';font-size: 0.75rem;}
 #addtoCatalog .catalog__item .open.opened:before {content: "\e920";}
 #addtoCatalog .catalog__item .sub {padding-left: 1rem;display: none;}
 #addtoLogin .mainnav__links a {display: block;padding: 1rem 2rem;}
 #addtoLogin .mainnav__links a:hover {background-color: #f0f6f5;color: #000000;}
 #addtoLogin .client__buttons .button {width: 100%;padding: 0;margin: 1rem 0 0 0;}
+#addtoLogin .dropdown__inner {padding: 0;}
 #addtoCart .button {width: 100%;padding: 0;}
 @media all and (max-width: 767px) {
 [data-open="catalogMenu"] .dropdown__title {height: 140px;}
@@ -1475,7 +1476,10 @@ footer .footer__block:nth-child(2) {margin-top: 2rem;}
 
 /* Товар: Отзывы */
 /* Отзывы: Список */
-.opinion__item {background-color: #f6f6f6;padding: 2rem;text-align: center;}
+.opinion__items {display: flex;flex-wrap: wrap;align-items: stretch;}
+.opinion__item {display: none;width: calc(33.333333% - 2rem);margin: 0 1rem 2rem 1rem;background-color: #f6f6f6;padding: 2rem;text-align: center;}
+.opinion__item:nth-child(-n+3) {display: block;}
+.opinion__item.show {display: block;}
 .opinion__ratings {margin-bottom: 2rem;}
 .opinion__text {margin-bottom: 1rem;max-height: 100px;overflow: hidden;}
 .opinion__text.active {max-height: 100%;}

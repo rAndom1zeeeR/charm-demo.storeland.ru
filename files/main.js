@@ -620,7 +620,7 @@ function goodspage() {
     }
   });
   // Отзывы Слайдер
-  $('.productView__opinion .owl-carousel').owlCarousel({
+  /*$('.productView__opinion .owl-carousel').owlCarousel({
     items: 3,
     margin: 32,
     loop: false,
@@ -651,10 +651,10 @@ function goodspage() {
       1200:{items:3}
     }
   });
-
+*/
 
   // Функция показать больше для Отзывов
-  /*let opinionContent = $('.productView__opinion');
+  let opinionContent = $('.productView__opinion');
   let opinionCount = opinionContent.find('.opinion__item').length;
   if(opinionCount<=3){ opinionContent.find('.opinion__buttons').hide(); }
   opinionContent.find('.opinion__buttons .showAll').on('click',function(event){
@@ -662,13 +662,11 @@ function goodspage() {
     if($(this).hasClass('active')){
       $(this).removeClass('active').find('span').text("Все отзывы");
       opinionContent.find('.opinion__item').removeClass('show');
-      $('html, body').animate({scrollTop : opinionContent.offset().top }, 800);
     }else{
       $(this).addClass('active').find('span').text("Скрыть все");
       opinionContent.find('.opinion__item').addClass('show');
-      $('html, body').animate({scrollTop : opinionContent.offset().top + $(window).height()}, 800);
     }
-  });*/
+  });
   // Переключение для Положительный и Отрицательный отзыв
   $('.generally label').on('click', function(event){
     event.preventDefault();

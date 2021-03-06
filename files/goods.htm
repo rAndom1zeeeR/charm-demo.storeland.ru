@@ -364,10 +364,8 @@
     <!-- Отзывы -->
     {% IFNOT SETTINGS_OPINION_DISABLE %}
     <div class="productView__opinion" data-tab="4">
-	    <div class="block__title block__nav">
+	    <div class="block__title">
 		    <div class="title">Отзывы покупателей</div>
-		    <div class="owl-nav"></div>
-		    <div class="owl-dots"></div>
 	    </div>
 	    {% IF opinion_list_empty %}
 	    <div class="opinion__empty">
@@ -377,33 +375,38 @@
 	    {% ENDIF %}
       <!-- Список отзывов о товарах -->
       {% IFNOT opinion_list_empty %}
-      <div class="opinion__items owl-carousel" itemprop="review" itemscope itemtype="https://schema.org/Review">
-        {% FOR opinion_list %}
-          <div class="opinion__item {% IF opinion_list.GENERALLY_IS_GOOD %}good{% ELSE %}bad{% ENDIF %}" data-rating='{opinion_list.RATING | divide("2")}'>
-            {% IF opinion_list.RATING %}
-            <div class="opinion__ratings ratings" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
-              <meta itemprop="worstRating" content="1">
-              <meta itemprop="bestRating" content="10">
-              <meta itemprop="ratingValue" content="{opinion_list.RATING}">
-              <meta itemprop="reviewCount" content="{GOODS_OPINION_RATING_CNT_ALL}">
-              <div class="rating" style="width:{opinion_list.RATING}0%" alt="{opinion_list.RATING}" title="Рейтинг товара"></div>
-            </div>
-            {% ENDIF %}
-            {% IF opinion_list.ACCOMPLISHMENTS %}<div class="opinion__text accomplishments" itemprop="description" style="display: none"><span>{opinion_list.ACCOMPLISHMENTS | nl2br}</span></div>{% ENDIF %}
-            {% IF opinion_list.LIMITATIONS %}<div class="opinion__text limitations" itemprop="description" style="display: none"><span>{opinion_list.LIMITATIONS | nl2br}</span></div>{% ENDIF %}
-            {% IF opinion_list.COMMENT %}<div class="opinion__text comment" itemprop="reviewBody"><span>{opinion_list.COMMENT | nl2br}</span></div>{% ENDIF %}
-	          <div class="opinion__more" rel="Свернуть отзыв">Читать весь отзыв</div>
-	          {% IF opinion_list.NAME %}<div class="opinion__name" itemprop="author">{opinion_list.NAME}</div>{% ENDIF %}
-	          {% IF opinion_list.TITLE %}<div class="opinion__title" itemprop="name" style="display: none">{opinion_list.TITLE}</div>{% ENDIF %}
-	          {% IF opinion_list.DATE %}
-	          <meta itemprop="datePublished" content="{opinion_list.DATE | date("d.m.Y")}">
-	          <div class="opinion__date">{opinion_list.DATE | date("d.m.Y")}</div>
-	          {% ENDIF %}
-	          {% IF opinion_list.ANSWER %}<div class="opinion__answer"><span>{opinion_list.ANSWER | nl2br}</span></div>{% ENDIF %}
-            {% IF opinion_list.DELETE_URL %}<a class="opinion__delete button small" href="{opinion_list.DELETE_URL}?return_to={CURRENT_URL | urlencode}%3Fgenerally_is_good%3D{GOODS_OPINION_GENERALLY_IS_GOOD | urlencode}%26page={OPINION_PAGES_LIST_CURRENT}" onclick="alert('Вы действительно хотите удалить отзыв?')">Удалить</a>{% ENDIF %}
-          </div>
-        {% ENDFOR %}
-      </div>
+	    <div class="row">
+	      <div class="opinion__items" itemprop="review" itemscope itemtype="https://schema.org/Review">
+	        {% FOR opinion_list %}
+	          <div class="opinion__item {% IF opinion_list.GENERALLY_IS_GOOD %}good{% ELSE %}bad{% ENDIF %}" data-rating='{opinion_list.RATING | divide("2")}'>
+	            {% IF opinion_list.RATING %}
+	            <div class="opinion__ratings ratings" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+	              <meta itemprop="worstRating" content="1">
+	              <meta itemprop="bestRating" content="10">
+	              <meta itemprop="ratingValue" content="{opinion_list.RATING}">
+	              <meta itemprop="reviewCount" content="{GOODS_OPINION_RATING_CNT_ALL}">
+	              <div class="rating" style="width:{opinion_list.RATING}0%" alt="{opinion_list.RATING}" title="Рейтинг товара"></div>
+	            </div>
+	            {% ENDIF %}
+	            {% IF opinion_list.ACCOMPLISHMENTS %}<div class="opinion__text accomplishments" itemprop="description" style="display: none"><span>{opinion_list.ACCOMPLISHMENTS | nl2br}</span></div>{% ENDIF %}
+	            {% IF opinion_list.LIMITATIONS %}<div class="opinion__text limitations" itemprop="description" style="display: none"><span>{opinion_list.LIMITATIONS | nl2br}</span></div>{% ENDIF %}
+	            {% IF opinion_list.COMMENT %}<div class="opinion__text comment" itemprop="reviewBody"><span>{opinion_list.COMMENT | nl2br}</span></div>{% ENDIF %}
+		          <div class="opinion__more" rel="Свернуть отзыв">Читать весь отзыв</div>
+		          {% IF opinion_list.NAME %}<div class="opinion__name" itemprop="author">{opinion_list.NAME}</div>{% ENDIF %}
+		          {% IF opinion_list.TITLE %}<div class="opinion__title" itemprop="name" style="display: none">{opinion_list.TITLE}</div>{% ENDIF %}
+		          {% IF opinion_list.DATE %}
+		          <meta itemprop="datePublished" content="{opinion_list.DATE | date("d.m.Y")}">
+		          <div class="opinion__date">{opinion_list.DATE | date("d.m.Y")}</div>
+		          {% ENDIF %}
+		          {% IF opinion_list.ANSWER %}<div class="opinion__answer"><span>{opinion_list.ANSWER | nl2br}</span></div>{% ENDIF %}
+	            {% IF opinion_list.DELETE_URL %}<a class="opinion__delete button small" href="{opinion_list.DELETE_URL}?return_to={CURRENT_URL | urlencode}%3Fgenerally_is_good%3D{GOODS_OPINION_GENERALLY_IS_GOOD | urlencode}%26page={OPINION_PAGES_LIST_CURRENT}" onclick="alert('Вы действительно хотите удалить отзыв?')">Удалить</a>{% ENDIF %}
+	          </div>
+	        {% ENDFOR %}
+	      </div>
+		    <div class="opinion__buttons">
+			    <a href="#" title="Показать все отзывы" class="opinion__more showAll"><span>Все отзывы</span></a>
+		    </div>
+	    </div>
       {% ENDIF %}
       <!-- Форма добавления отзыва -->
       <div class="opinion__addForm">
