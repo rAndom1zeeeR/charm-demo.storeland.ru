@@ -275,15 +275,21 @@
 	<!-- Категории -->
 	<section id="catalog">
 		<div class="container">
-			<div class="catalog__items owl-carousel">
-				{% FOR catalog_full %}
-				{% IF catalog_full.LEVEL = 0 %}
-				<div class="categories__item" data-id="{catalog_full.ID}">
-					<a href="{catalog_full.URL}" class="categories__image"><img data-src="{% IF catalog_full.IMAGE_MEDIUM %}{catalog_full.IMAGE_MEDIUM}{% ELSE %}{ASSETS_IMAGES_PATH}no-photo-small.png?design=THEMENAME{% ENDIF %}" class="goods-image-medium owl-lazy"/></a>
-					<a href="{catalog_full.URL}" class="categories__name">{catalog_full.NAME}</a>
+			<div class="row">
+				<div class="catalog__items">
+					<div class="categories__item">
+						<a href="{catalog_full.URL}" class="categories__image"><img class="lozad" data-src="{ASSETS_IMAGES_PATH}cat_banner_1.jpg?design=THEMENAME"/></a>
+						<a href="{catalog_full.URL}" class="categories__name">Кольца</a>
+					</div>
+					<div class="categories__item">
+						<a href="{catalog_full.URL}" class="categories__image"><img class="lozad" data-src="{ASSETS_IMAGES_PATH}cat_banner_2.jpg?design=THEMENAME"/></a>
+						<a href="{catalog_full.URL}" class="categories__name">Браслеты</a>
+					</div>
+					<div class="categories__item">
+						<a href="{catalog_full.URL}" class="categories__image"><img class="lozad" data-src="{ASSETS_IMAGES_PATH}cat_banner_3.jpg?design=THEMENAME"/></a>
+						<a href="{catalog_full.URL}" class="categories__name">Серьги</a>
+					</div>
 				</div>
-				{% ENDIF %}
-				{% ENDFOR %}
 			</div>
 			<div class="catalog__buttons">
 				<a href="{CATALOG_URL}" title="Перейти в Каталог">Весь каталог</a>
@@ -2025,7 +2031,7 @@
 				<form method="post" action="{CALLBACK_URL}" class="form__callback" enctype="multipart/form-data">
 					<input type="hidden" name="hash" value="{HASH}"/>
 					<input type="hidden" name="return_to" value="{CALLBACK_URL}" class="callbackredirect"/>
-					<input type="hidden" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="Уведомить -- {GOODS_NAME}"/>
+					<input type="hidden" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="Уведомить -- {GOODS_NAME}" id="fancy__info"/>
 					<input type="hidden" name="form[Имя_Товара]" value="{GOODS_NAME}" id="fancy__name"/>
 					<input type="hidden" name="form[Артикул]" value="{GOODS_MOD_ART_NUMBER}" id="fancy__art"/>
 					<!-- Для использования почты для уведомлений необходимо убрать комментарии для строки ниже -->

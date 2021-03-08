@@ -965,7 +965,6 @@ header .logo {width: 100%;margin-top: 2rem;}
 #addtoLogin .mainnav__links a {display: block;padding: 1rem 2rem;}
 #addtoLogin .mainnav__links a:hover {background-color: #f0f6f5;color: #000000;}
 #addtoLogin .client__buttons .button {width: 100%;padding: 0;margin: 1rem 0 0 0;}
-#addtoLogin .dropdown__inner {padding: 0;}
 #addtoCart .button {width: 100%;padding: 0;}
 @media all and (max-width: 767px) {
 [data-open="catalogMenu"] .dropdown__title {height: 140px;}
@@ -1314,11 +1313,13 @@ footer .footer__block:nth-child(2) {margin-top: 2rem;}
 }
 
 /*** Каталог на главной ***/
-#catalog .categories__item {width: 100%;margin: 0;transform: translate(0px, 0px);transition: all 0.3s ease;}
-#catalog .categories__image {height: 560px;background-color: #f6f6f6;margin-bottom: 0;}
+#catalog {z-index: 1;position: relative;}
+#catalog .catalog__items {display: flex;flex-wrap: wrap;}
+#catalog .categories__item {transform: translate(0px, 0px);transition: all 0.3s ease;}
+#catalog .categories__image {height: 560px;margin-bottom: 0;}
 #catalog .categories__image img {max-height: 560px;}
 #catalog .categories__name {font-size: 40px;color: #ffffff;padding: 2rem 1rem;width: 100%;max-height: 100%;bottom: 0;position: absolute;white-space: nowrap;text-overflow: ellipsis;}
-#catalog .catalog__buttons {text-align: center;margin-top: 2rem;}
+#catalog .catalog__buttons {text-align: center;}
 #catalog .catalog__buttons a {color: #608c88;font-size: 18px;font-family: 'Playfair Display', serif;}
 #catalog .catalog__buttons a:hover {color: #000000;}
 @media all and (min-width: 993px) {

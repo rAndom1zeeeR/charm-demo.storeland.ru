@@ -2520,7 +2520,7 @@ function OrderScriptsSelect() {
     });
     $('.order__paymentSelect option:first-child').prop('selected', true);
     // Вывод описания доставки
-    let DeliveryDescription = $('.delivery__radio:checked').next('.delivery__desc').html();
+    let DeliveryDescription = $('.delivery__radio:checked').parent().find('.delivery__desc').html();
     $('.delivery__description').html(DeliveryDescription);
     if (DeliveryDescription == undefined ) {
       $('.delivery__description').css("display", "none");
@@ -2528,7 +2528,7 @@ function OrderScriptsSelect() {
       $('.delivery__description').css("display", "block");
     }
     // Вывод описания оплаты
-    let PaymentDescription = $('.hiddenRadio .paymentRadio:checked').next('.payment__desc').html();
+    let PaymentDescription = $('.hiddenRadio .paymentRadio:checked').parent().find('.payment__desc').html();
     $('.payment__description').html(PaymentDescription);
     if (PaymentDescription == undefined ) {
       $('.payment__description').css("display", "none");
@@ -2559,7 +2559,7 @@ function OrderScriptsSelect() {
   $('.paymentSelect').change(function(){
     let selectedDelId = $(this).find('option:selected').attr('value');
     $('.hiddenRadio .paymentRadio[value="'+selectedDelId+'"]').click();
-    let PaymentDescription = $('.hiddenRadio .paymentRadio:checked').next('.payment__desc').html();
+    let PaymentDescription = $('.hiddenRadio .paymentRadio:checked').parent().find('.payment__desc').html();
     $('.payment__description').html(PaymentDescription);
     if (PaymentDescription == undefined ) {
       $('.payment__description').css("display", "none");
@@ -3545,6 +3545,7 @@ $(document).ready(function(){
   });
   // Уведомить при отсутствии товара
   $('.add-notify').on('click', function(){
+    $('#fancy__info').val('Уведомить -- ' + $(this).attr('data-name'));
     $('#fancy__name').val($(this).attr('data-name'));
     $('#fancy__art').val($(this).attr('data-art'));
   });
