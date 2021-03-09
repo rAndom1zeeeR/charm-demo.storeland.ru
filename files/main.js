@@ -1420,7 +1420,6 @@ $('.add-compare').off('click').click(function(){
           
           // Если указано, что изменилось число товаров на сравнении
           if(typeof(data.compare_goods_count) != 'undefined') {
-            console.log(data.compare_goods_count)
             // Блок информации о том, что есть товары на сравнении
             let sidecount = $('.compare__count');
             // Если на сравнении больше нет товаров
@@ -1768,8 +1767,6 @@ function removeFromCompare(e){
         let newCount = oldCount - 1;
         $('.compare__count').attr('data-count', newCount).text(newCount);
         let flag = 0;
-        console.log('newCount', oldCount)
-        console.log('newCount', newCount)
         if(newCount != 0){
           $('.addto__compare .addto__item').each(function(){
             if(flag == 0){
@@ -2752,17 +2749,6 @@ function coupons() {
         let totalSum = totalBlock.find('.total-sum').data('total-sum');
         let deliveryPrice = parseInt($('.cartSumDelivery .num').text());
         let newTotalSum = totalSum + deliveryPrice;
-        console.log('',)
-        /*console.log('totalSum',totalSum)
-        console.log('oldQuickPrice',oldQuickPrice)
-        console.log('deliveryPrice',deliveryPrice)
-        console.log('newTotalSum',newTotalSum)
-        console.log('discountBlock',discountBlock)
-        console.log('discountBlock length',discountBlock.length)
-        console.log('discountName',discountName)
-        console.log('discountPercent',discountPercent)
-        console.log('totalBlock',totalBlock)*/
-
         if (discountBlock.length) {
           couponInput.parent().removeClass('error');
           couponInput.parent().addClass('good');
@@ -2805,13 +2791,6 @@ function coupons() {
       couponInput.parent().removeClass('good');
       couponInput.val("").attr("placeholder", "Введите купон");
       submitBtn.find('span').text('Применить');
-      console.log('',)
-      console.log('cartSum',cartSum)
-      console.log('',)
-      console.log('',)
-      console.log('',)
-      console.log('',)
-
     }, 500);
   });
   // Отображение кнопки Сброс
@@ -3303,7 +3282,6 @@ function closeMenu() {
     $('.dropdown__open').removeClass('opened');
     $('.dropdown__content').removeClass('opened');
     $('#overlay').removeClass('opened');
-    console.log('click')
   });
 
 }

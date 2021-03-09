@@ -691,8 +691,8 @@ section {margin: 2rem 0;}
 /** Купоны **/
 .coupon__button {line-height: 40px;right: 4px;position: absolute;display: flex;align-items: center;justify-content: center;transition: all 0.3s ease;}
 .coupon__button:before {font-family: 'icomoon';}
-/*.coupon__order.active .coupon__button span {display: none;}
-.coupon__order.active .coupon__button:before {content: '\e91b';}
+/*.coupon__order.good .coupon__button span {display: none;}
+.coupon__order.good .coupon__button:before {content: '\e91b';}
 .coupon__order.error .coupon__button:before {content: '\e914';}*/
 .coupon__reset {display: none;position: absolute;right: 11.5rem;line-height: 1;cursor: pointer;}
 .coupon__reset.active {display: block;}
