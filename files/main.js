@@ -656,8 +656,8 @@ function goodspage() {
   // Функция показать больше для Отзывов
   let opinionContent = $('.productView__opinion');
   let opinionCount = opinionContent.find('.opinion__item').length;
-  if(opinionCount<=3){ opinionContent.find('.opinion__buttons').hide(); }
-  opinionContent.find('.opinion__buttons .showAll').on('click',function(event){
+  if(opinionCount<=3){ opinionContent.find('.opinion__show').hide(); }
+  opinionContent.find('.opinion__show .showAll').on('click',function(event){
     event.preventDefault();
     if($(this).hasClass('active')){
       $(this).removeClass('active').find('span').text("Все отзывы");
@@ -797,12 +797,10 @@ function catalog() {
       $(this).removeClass('opened');
       $(this).parent().parent().removeClass('opened');
       $('#filters').removeClass('opened');
-      $('#overlay').removeClass('opened');
     } else {
       $(this).addClass('opened');
       $(this).parent().parent().addClass('opened');
       $('#filters').addClass('opened');
-      $('#overlay').addClass('opened');
     }
   });
 }
@@ -1231,9 +1229,11 @@ $('.productView__form, .goodsListForm').off('submit').submit(function() {
   if ($(this).attr('rel') === 'quick') {
     quickOrder(this);
     $('.cart').addClass("hasItems");
+    $('.addto__cart').addClass("hasItems");
     return (false);
   }
   $('.cart').addClass("hasItems");
+  $('.addto__cart').addClass("hasItems");
   $('.cart__count').animate({opacity: 0,display: "none"},500);
   $('.cart__count').animate({display: "inline",opacity: 1},500);
   // Находим форму, которую отправляем на сервер, для добавления товара в корзину
@@ -1420,22 +1420,23 @@ $('.add-compare').off('click').click(function(){
           
           // Если указано, что изменилось число товаров на сравнении
           if(typeof(data.compare_goods_count) != 'undefined') {
+            console.log(data.compare_goods_count)
             // Блок информации о том, что есть товары на сравнении
             let sidecount = $('.compare__count');
             // Если на сравнении больше нет товаров
             // Указываем информацию о новом количестве товаров на сравнении
             // Блок обновления списка сравнения в каталога
-            sidecount.animate({opacity: 0,display: "none"},500,function(){
             sidecount.text(data.compare_goods_count);
             $('.compare__count').attr('data-count', data.compare_goods_count);
-              if(data.compare_goods_count > 0){
-                $('.compare').addClass("hasItems");
-              }else{
-                $('.compare').removeClass("hasItems");
-                $('.compare__count').attr('data-count', '0').text("0");
-                $('.add-compare').removeAttr("title").removeClass("added");
-              }
-            }).animate({display: "inline",opacity: 1} , 500 );
+            if(data.compare_goods_count > 0){
+              $('.compare').addClass("hasItems");
+              $('.addto__compare').addClass("hasItems");
+            }else{
+              $('.compare').removeClass("hasItems");
+              $('.addto__compare').removeClass("hasItems");
+              $('.compare__count').attr('data-count', '0').text("0");
+              $('.add-compare').removeAttr("title").removeClass("added");
+            }
           }
           
           // Обновляем ссылку, на которую будет уходить запрос и информацию о ней
@@ -1606,17 +1607,17 @@ $('.add-favorites').off('click').click(function(){
             // Если на сравнении больше нет товаров
             // Указываем информацию о новом количестве товаров на сравнении
             // Блок обновления списка сравнения в каталога
-            sidecount.animate({opacity: 0,display: "none"},500,function(){
             sidecount.text(data.favorites_goods_count);
             $('.favorites__count').attr('data-count', data.favorites_goods_count);
-              if(data.favorites_goods_count > 0){
-                $('.favorites').addClass("hasItems");
-              }else{
-                $('.favorites').removeClass("hasItems");
-                $('.favorites__count').attr('data-count', '0').text("0");
-                $('.add-favorites').removeAttr("title").removeClass("added");
-              }
-            }).animate({display: "inline",opacity: 1} , 500 );
+            if(data.favorites_goods_count > 0){
+              $('.favorites').addClass("hasItems");
+              $('.addto__favorites').addClass("hasItems");
+            }else{
+              $('.favorites').removeClass("hasItems");
+              $('.addto__favorites').removeClass("hasItems");
+              $('.favorites__count').attr('data-count', '0').text("0");
+              $('.add-favorites').removeAttr("title").removeClass("added");
+            }
           }
           
           // Обновляем ссылку, на которую будет уходить запрос и информацию о ней
@@ -1716,6 +1717,7 @@ function removeFromFavorites(e){
           });
         }else{
           $('.favorites').removeClass("hasItems");
+          $('.addto__favorites').removeClass("hasItems");
           $('.favorites__count').attr('data-count', '0').text('0');
         }
         let obj = $('.add-favorites[data-mod-id="' + goodsModId + '"]');
@@ -1741,6 +1743,7 @@ function removeFromFavoritesAll(e){
     url		 : href,
     success: function(d){
       $('.favorites').removeClass("hasItems");
+      $('.addto__favorites').removeClass("hasItems");
       $('.favorites__count').attr('data-count', '0').text("0");
       $('.addto__favorites .addto__item').remove();
       $('.addto__favorites .preloader').hide();
@@ -1765,6 +1768,8 @@ function removeFromCompare(e){
         let newCount = oldCount - 1;
         $('.compare__count').attr('data-count', newCount).text(newCount);
         let flag = 0;
+        console.log('newCount', oldCount)
+        console.log('newCount', newCount)
         if(newCount != 0){
           $('.addto__compare .addto__item').each(function(){
             if(flag == 0){
@@ -1776,6 +1781,7 @@ function removeFromCompare(e){
           });
         }else{
           $('.compare').removeClass("hasItems");
+          $('.addto__compare').removeClass("hasItems");
           $('.compare__count').attr('data-count', '0').text('0');
         }
         let obj = $('.add-compare[data-mod-id="' + goodsModId + '"]');
@@ -1801,6 +1807,7 @@ function removeFromCompareAll(e){
     url		 : href,
     success: function(d){
       $('.compare').removeClass("hasItems");
+      $('.addto__compare').removeClass("hasItems");
       $('.compare__count').attr('data-count', '0').text("0");
       $('.addto__compare .addto__item').remove();
       $('.addto__compare .preloader').hide();
@@ -1837,8 +1844,10 @@ function removeFromCart(e){
         })
       }else{
         $('.cart').removeClass("hasItems");
+        $('.addto__cart').removeClass("hasItems");
         $('.cart__count').attr('data-count', '0').text("0");
         $('.addto__cart .addto__item').remove();
+        $('.addto__total').hide();
       }
     }
   });
@@ -1858,9 +1867,11 @@ function removeFromCartAll(e){
     success: function(d){
       $('.totalSum').html($(d).find('.totalSum').html());
       $('.cart').removeClass("hasItems");
+      $('.addto__cart').removeClass("hasItems");
       $('.cart__count').attr('data-count', '0').text("0");
       $('.addto__cart .addto__item').remove();
       $('.addto__cart .preloader').hide();
+      $('.addto__total').hide();
 		}
   });
   }
@@ -2741,15 +2752,21 @@ function coupons() {
         let totalSum = totalBlock.find('.total-sum').data('total-sum');
         let deliveryPrice = parseInt($('.cartSumDelivery .num').text());
         let newTotalSum = totalSum + deliveryPrice;
-        if (totalSum > oldQuickPrice) {
-          couponInput.parent().addClass('error');
-          couponInput.parent().removeClass('active');
-          couponInput.val("").attr("placeholder", "Купон неверен");
-          $('.total__coupons').hide();
-          $('.total__discount').show();
-        } else {
+        console.log('',)
+        /*console.log('totalSum',totalSum)
+        console.log('oldQuickPrice',oldQuickPrice)
+        console.log('deliveryPrice',deliveryPrice)
+        console.log('newTotalSum',newTotalSum)
+        console.log('discountBlock',discountBlock)
+        console.log('discountBlock length',discountBlock.length)
+        console.log('discountName',discountName)
+        console.log('discountPercent',discountPercent)
+        console.log('totalBlock',totalBlock)*/
+
+        if (discountBlock.length) {
           couponInput.parent().removeClass('error');
-          couponInput.parent().addClass('active');
+          couponInput.parent().addClass('good');
+          submitBtn.find('span').text('Применен');
           $('.total__coupons').show();
           // Обновляем значение итоговой стоимости
           $('.cartSumTotal .num').text(newTotalSum);
@@ -2758,6 +2775,13 @@ function coupons() {
           $('.cartSumTotalHide').attr('data-value', newTotalSum);
           $('.cartSumTotalHide .num').text(newTotalSum);
           $('.cartSumDiscount .num').text(totalSum);
+        } else {
+          couponInput.parent().addClass('error');
+          couponInput.parent().removeClass('good');
+          couponInput.val("").attr("placeholder", "Купон неверен");
+          submitBtn.find('span').text('Применить');
+          $('.total__coupons').hide();
+          $('.total__discount').show();
         }
       },
       error: function(data){
@@ -2771,15 +2795,23 @@ function coupons() {
     setTimeout(function(){
       $('.total__coupons').hide();
       $('.total__discount').show();
-      let cartSum = $('.cartSumDiscount .num').data('value');
+      let cartSum = $('.cartSumDiscount').data('value');
       $('.cartSumTotal .num').text(cartSum);
       $('.cartSumTotal').attr('data-value', cartSum);
       $('.cartSumCoupons').attr('data-value', cartSum);
       $('.cartSumTotalHide').attr('data-value', cartSum);
       $('.cartSumTotalHide .num').text(cartSum);
       couponInput.parent().removeClass('error');
-      couponInput.parent().removeClass('active');
+      couponInput.parent().removeClass('good');
       couponInput.val("").attr("placeholder", "Введите купон");
+      submitBtn.find('span').text('Применить');
+      console.log('',)
+      console.log('cartSum',cartSum)
+      console.log('',)
+      console.log('',)
+      console.log('',)
+      console.log('',)
+
     }, 500);
   });
   // Отображение кнопки Сброс

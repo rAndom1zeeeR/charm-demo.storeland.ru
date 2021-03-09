@@ -1759,7 +1759,7 @@
 			<div class="compare {% IF COMPARE_GOODS_COUNT > 0 %}hasItems{% ENDIF %}">
 				<a href="{COMPARE_URL}" title="Сравнение" class="sidebar__icon dropdown__open" data-open="compare">
 					<i class="icon-compare"></i>
-					<span class="count" data-count="{COMPARE_GOODS_COUNT}">{COMPARE_GOODS_COUNT}</span>
+					<span class="compare__count" data-count="{COMPARE_GOODS_COUNT}">{COMPARE_GOODS_COUNT}</span>
 				</a>
 			</div>
 			{% ENDIF %}
@@ -1767,7 +1767,7 @@
 			<div class="favorites {% IF FAVORITES_GOODS_COUNT > 0 %}hasItems{% ENDIF %}">
 				<a href="{FAVORITES_URL}" title="Сохраненное" class="sidebar__icon dropdown__open" data-open="favorites">
 					<i class="icon-favorites"></i>
-					<span class="count" data-count="{FAVORITES_GOODS_COUNT}">{FAVORITES_GOODS_COUNT}</span>
+					<span class="favorites__count" data-count="{FAVORITES_GOODS_COUNT}">{FAVORITES_GOODS_COUNT}</span>
 				</a>
 			</div>
 			<!-- Наверх -->
