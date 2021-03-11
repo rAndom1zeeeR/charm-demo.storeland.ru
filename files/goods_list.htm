@@ -14,7 +14,8 @@
 	    {% ENDFOR %}
 	  </div>
 	</div>
-  {% ENDIF %}
+  {% ENDIF nested_categories_list_empty %}
+	
   <!-- Если нет товаров, выводим сообщение пользователю -->
   {% IF nested_categories_list_empty && goods_empty %}
     {% IF goods_filters_empty %}
@@ -80,8 +81,9 @@
         {% ENDIF %}
       </div>
       <!-- /END Вид Таблица/Список -->
-    </form>    {% IF TARIFF_FEATURE_GOODS_FILTERS && SHOW_GOODS_FILTERS %}
-	  <!-- Чекбокс фильтры -->
+    </form>
+	  <!-- Фильтры -->
+	  {% IF TARIFF_FEATURE_GOODS_FILTERS && SHOW_GOODS_FILTERS %}
 	  <div class="filters">
 		  <div class="block__title filters__open">
 			  <div class="title"><span>Фильтры</span></div>
@@ -162,9 +164,8 @@
 			  </div>
 		  </form>
 	  </div>
+	  {% ENDIF %}
 	  <!-- END Чекбокс фильтры -->
-  </div>
-	{% ENDIF %}
   </div>
   <!-- END Верхний блок, изменяющий отображение данных выдачи товаров -->
   <!-- Вывод товаров -->
@@ -529,9 +530,9 @@
       {% ENDIF %}
     </ol>
   </div>
-  {% ENDIF %}
+  {% ENDIF show_pages %}
   <!-- /END Страницы -->
-  {% ENDIF %}
+	{% ENDIF IS_FULL_CATALOG %}
   <!-- /END Товары -->
 </div>
 

@@ -3596,23 +3596,6 @@ $(window).resize(function(){
 // Анимация объектов
 function gsapAnimIndex() {
   gsap.registerPlugin(ScrollTrigger);
-  // Анимация в промо
-  gsap.from(".promo__image", {
-    scrollTrigger: {
-      trigger: "#promo",
-      toggleActions: "restart pause resume none"
-    },
-    x: '50%',
-    duration: 1
-  });
-  gsap.from(".promo__border", {
-    scrollTrigger: {
-      trigger: "#promo",
-      toggleActions: "restart pause resume none"
-    },
-    x: '-50%',
-    duration: 1
-  });
 
   // Анимация в обратном звонке фона
   gsap.from("#choice .choice__bg", {
@@ -3636,7 +3619,7 @@ function gsapAnimIndex() {
     duration: 1
   });
   // Анимация в обратном звонке полей
-  gsap.from("#callback .form__field", {
+  gsap.from("#callback .form__fields", {
     scrollTrigger: {
       trigger: "#callback",
       toggleActions: "restart pause resume none"
@@ -3652,17 +3635,6 @@ function gsapAnimIndex() {
     },
     y: '50%',
     duration: 1
-  });
-  // Анимация преимуществ
-  gsap.from(".advantages__item", {
-    scrollTrigger: {
-      trigger: ".advantages",
-      toggleActions: "restart pause resume none"
-    },
-    x: '50%',
-    duration: 1.5,
-    stagger: .5,
-    delay: 1
   });
   // Анимация описания на главной
   gsap.from("#mainbody .body", {
