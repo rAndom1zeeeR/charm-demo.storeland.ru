@@ -1366,7 +1366,6 @@ footer .footer__block:nth-child(2) {margin-top: 2rem;}
 
 
 /*** Верхний блок, изменяющий отображение данных выдачи товаров ***/
-.toolbar {}
 .toolbar.bottom {margin-top: 2rem;}
 .toolbar .form__toolbar {display: flex;flex-wrap: wrap;align-items: center;}
 .form__toolbar .selectBox select {font-weight: bold;}
@@ -1375,8 +1374,9 @@ footer .footer__block:nth-child(2) {margin-top: 2rem;}
 .view__icon {border: 0;font-size: 1.25rem;display: flex;align-items: center;justify-content: center;}
 .view__icon:hover, .view__icon.active {color: #7ba3a2;}
 .view__icon + .view__icon {margin-left: 1rem;}
-.filters__icon {margin-left: 2rem;border: 1px solid #e8e8e8;padding: 0 1.5rem;height: 50px;line-height: 50px;font-weight: bold;font-size: 1rem;transition: all 0.3s ease;}
-.filters__icon:hover, .filters__icon.opened {border-color: #7ca4a3;cursor: pointer;}
+.show-filters {margin-left: 2rem;}
+.filters__icon {border: 1px solid #e8e8e8;padding: 0 1.5rem;height: 50px;line-height: 50px;font-weight: bold;font-size: 1rem;display: block;transition: all 0.3s ease;}
+.filters__icon:hover, .opened .filters__icon {border-color: #7ca4a3;color: #7ca4a3;cursor: pointer;}
 /*** Новый селект бокс ***/
 .jq-selectbox.select, .jq-select-multiple.select {display: block;}
 .jq-selectbox__select {height: 40px;line-height: 40px;padding: 0 2.5rem 0 1rem;background-color: #FFFFFF;border: 1px solid #e8e8e8;cursor: pointer;transition: all 0.3s ease;}
@@ -1389,9 +1389,15 @@ footer .footer__block:nth-child(2) {margin-top: 2rem;}
 .jq-selectbox__trigger {position: absolute;right: .75rem;top: 0;}
 .jq-selectbox__trigger:after {content: '\e904';font-family: 'icomoon';line-height: 1;transition: all 0.3s ease;pointer-events: none;box-sizing: border-box;}
 .jq-selectbox.opened .jq-selectbox__trigger:after {content: '\e920';}
+@media all and (max-width: 640px) {
+.sort-by {width: calc(100% - 132px);}
+.show-by {width: 100px;}
+.show-filters {margin: 1rem 0 0 0;}
+.view__type {margin-top: 1rem;}
+}
 @media all and (max-width: 479px) {
 .form__toolbar .selectBox select {padding: 0 2rem 0 1rem;}
-.show-by {margin-left: 1rem;}
+.show-filters {width: calc(100% - 132px);}
 }
 
 
@@ -1575,7 +1581,6 @@ footer .footer__block:nth-child(2) {margin-top: 2rem;}
 
 /* Фильтры */
 .filters {padding-top: 2rem;}
-.filters .block__title .title {font-size: 32px;}
 .filters-price .inputText {display: inline-block;height: 30px;line-height: 30px;text-align: center;color: #000000;padding: 0 3px;border: 0;}
 .filters-price .separator {display: inline-block;width: 25px;height: 1px;margin: 0 5px;vertical-align: middle;background: transparent;}
 .filters-price #goods-filter-price-slider {width: 100%;position: relative;border: 0;height: 6px;margin: 1rem 0.5rem 1rem 0px;background: #e2e6f1;cursor: pointer;}
@@ -1613,8 +1618,8 @@ footer .footer__block:nth-child(2) {margin-top: 2rem;}
 .filters__open:hover {color: #7ca4a3;cursor: pointer;}
 @media all and (max-width: 992px) {
 .filters-goods .one-filter {width: 33.333333%;}
-.filters__open + form {display: none;}
-.filters__open.opened + form {display: block;}
+.filters {opacity: 0;height: 0;padding-top: 0;transition: all 0.3s ease;}
+.opened .filters {opacity: 1;height: 100%;padding-top: 2rem;}
 }
 @media all and (max-width: 640px) {
 .filters-goods .one-filter {width: 50%;}

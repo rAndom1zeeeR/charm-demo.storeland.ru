@@ -70,6 +70,11 @@
         </select>
       </div>
       <!-- /END Показывать по: -->
+	    <!-- Открытие Фильтров -->
+	    <div class="show-filters filters__open">
+		    <div class="filters__icon"><span>Фильтры</span></div>
+	    </div>
+	    <!-- /END Открытие Фильтров -->
       <!-- Вид Таблица/Список -->
       <div class="view__type">
         {% IF GOODS_VIEW_TYPE=1 %}
@@ -85,9 +90,6 @@
 	  <!-- Фильтры -->
 	  {% IF TARIFF_FEATURE_GOODS_FILTERS && SHOW_GOODS_FILTERS %}
 	  <div class="filters">
-		  <div class="block__title filters__open">
-			  <div class="title"><span>Фильтры</span></div>
-		  </div>
 		  <form action="" method="get">
 			  <!-- Чекбокс фильтры -->
 			  <div class="row">

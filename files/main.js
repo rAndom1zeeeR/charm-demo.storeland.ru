@@ -3659,15 +3659,6 @@ function gsapAnimGoods() {
     stagger: .1,
     delay: 1
   });
-  // Анимация в отзывах заголовка
-  gsap.from(".opinion__labelText", {
-    scrollTrigger: {
-      trigger: ".productView__opinion",
-      toggleActions: "restart pause resume none"
-    },
-    y: '50%',
-    duration: 1
-  });
 }
 function gsapAnimCatalog() {
   gsap.registerPlugin(ScrollTrigger);
