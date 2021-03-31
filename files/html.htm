@@ -298,7 +298,7 @@
 	</section>
 	
 	<!-- Товары на главной. Новинки. -->
-	{% IFNOT index_page_favorites_goods_empty || index_page_new_goods_empty=0 %}
+	{% IFNOT index_page_new_goods_empty || index_page_goods_empty=0 %}
 	<section id="pdt">
 		<div class="container">
 			<div class="block__title block__nav">
@@ -1246,7 +1246,7 @@
 	</section>
 	{% ENDIF %}
 	
-	{% ELSE index_page %}
+	{% ELSE not index_page %}
 	
 	<!-- Если НЕ ГЛАВНАЯ -->
 	<section id="main">
@@ -1384,7 +1384,7 @@
 	
 	<!-- Вы смотрели -->
 	{% IFNOT recently_viewed_goods_empty %}
-	<section id="viewed" data-content="viewed">
+	<section id="viewed" data-content="viewed" {% IF MOD_LNAME = cart %}style="display: none;"{% ENDIF %}>
 		<div class="container">
 			<div class="block__title block__nav">
 				<div class="title">Вы смотрели</div>

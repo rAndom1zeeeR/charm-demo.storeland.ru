@@ -71,9 +71,11 @@
       </div>
       <!-- /END Показывать по: -->
 	    <!-- Открытие Фильтров -->
-	    <div class="show-filters filters__open">
+	    {% IF TARIFF_FEATURE_GOODS_FILTERS && SHOW_GOODS_FILTERS %}
+	    <div class="show-filters filters__open {% FOR filter_attr_list %}{% FOR values %}{% IF filter_attr_list.values.CHECKED %}hasFilters {% ENDIF %}{% ENDFOR %}{% ENDFOR %} {% FOR filter_prop_list %}{% FOR values %}{% IF filter_prop_list.values.CHECKED %}hasFilters {% ENDIF %}{% ENDFOR %}{% ENDFOR %}">
 		    <div class="filters__icon"><span>Фильтры</span></div>
 	    </div>
+	    {% ENDIF %}
 	    <!-- /END Открытие Фильтров -->
       <!-- Вид Таблица/Список -->
       <div class="view__type">
@@ -88,7 +90,7 @@
       <!-- /END Вид Таблица/Список -->
     </form>
 	  <!-- Фильтры -->
-	  {% IF TARIFF_FEATURE_GOODS_FILTERS && SHOW_GOODS_FILTERS %}
+	  {% IF SHOW_GOODS_FILTERS || SHOW_GOODS_PRICE_FILTERS %}
 	  <div class="filters">
 		  <form action="" method="get">
 			  <!-- Чекбокс фильтры -->
@@ -96,7 +98,7 @@
 				  <div class="allfilters filters-goods">
 					  {% IF SHOW_GOODS_PRICE_FILTERS %}
 					  <div class="one-filter">
-						  <div class="filters-price filter">
+						  <div class="filter filters-price">
 							  <div class="filter_block_name unselectable" title='Фильтровать товары по цене'><span class="filter_name">Цена</span><sup class="sup_number"></sup><div class="clearThisFilter"><span class="fa fa-close"></span></div> <span class="svg-arrowdown"></span><span class="svg-arrowup"></span></div>
 							  <div class="layout-slider filter-inner">
 								  <input id="goods-filter-min-price" class="inputText" type="text" name="form[filter][price][min]" value="{% IF GOODS_FILTER_MIN_PRICE %}{GOODS_FILTER_MIN_PRICE}{% ELSE %}{GOODS_FILTER_MIN_AVAILABLE_PRICE}{% ENDIF %}" min="1" onkeypress="return keyPress(this, event);" onpaste="return false;" />

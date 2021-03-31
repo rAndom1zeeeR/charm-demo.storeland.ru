@@ -14,6 +14,11 @@
           </div>
         {% ENDFOR %}
       </div>
+	    <div class="productView__images" style="display: none;">
+		    {% FOR goods_images %}
+			    <input type="hidden" data-id="{goods_images.ID}" data-image-large="{goods_images.LARGE}" data-image-medium="{goods_images.MEDIUM}" data-index="{goods_images.index}">
+		    {% ENDFOR %}
+	    </div>
 	    <!-- Стикеры -->
 	    <div class="product__ico">
 		    {% IF GOODS_IS_NEW %}

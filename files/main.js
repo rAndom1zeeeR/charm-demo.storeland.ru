@@ -581,7 +581,7 @@ function goodspage() {
       0:{items:1},
       320:{items:1},
       481:{items:2},
-      641:{items:2},
+      641:{items:3},
       768:{items:3},
       992:{items:4},
       1200:{items:5}
@@ -613,7 +613,7 @@ function goodspage() {
       0:{items:1},
       320:{items:1},
       481:{items:2},
-      641:{items:2},
+      641:{items:3},
       768:{items:3},
       992:{items:4},
       1200:{items:5}
@@ -867,9 +867,11 @@ function priceFilter() {
   if (priceInputMin.val() > priceFilterMinAvailable || priceInputMax.val() < priceFilterMaxAvailable) {
     $('.filters-price').addClass('hasFilters');
     $('.toolbar').addClass('hasFilters');
+    console.log('add')
   }else{
     $('.filters-price').removeClass('hasFilters');
     $('.toolbar').removeClass('hasFilters');
+    console.log('rem')
   }
   
 }
@@ -1095,18 +1097,16 @@ function goodsModification() {
           }
           var 
             // Блок с изображением выбранной модификации товара
-            goodsModImageBlock = $('.thumblist [data-id="' + parseInt(goods_mod_image_id) + '"'),
+            goodsModImageBlock = $('.thumblist .productView__images [data-id="' + parseInt(goods_mod_image_id) + '"'),
             // Блок, в котором находится главное изображение товара
             MainImageBlock = $('.owl-item.active .productView__image'),
             // Изображение модификации товара, на которое нужно будет изменить главное изображение товара.
-            MediumImageUrl = goodsModImageBlock.find('a').attr('href'),
+            MediumImageUrl = goodsModImageBlock.attr('data-image-medium'),
             // Главное изображение, в которое будем вставлять новое изображение
             MainImage = MainImageBlock.find('img')
           ;
           // Если изображение модификации товара найдено - изменяем главное изображение
           MainImage.attr('src', MediumImageUrl).parent().attr('href', MediumImageUrl);
-          // Изменяем идентификатор главного изображения
-          MainImageBlock.attr("data-id", parseInt(goods_mod_image_id));
           return true;
         }
         // Обновляем изображние модификации товара, если оно указано
@@ -2916,7 +2916,7 @@ function pdtSlider() {
   // Функция слайдера для "Лидеры продаж" на главной странице
   $('#pdt__best .owl-carousel').owlCarousel({
     items: 5,
-    margin: 32,
+    margin: 16,
     loop: false,
     rewind: true,
     lazyLoad: true,
@@ -2937,9 +2937,9 @@ function pdtSlider() {
     responsiveRefreshRate: 100,
     responsive: {
       0:{items:1},
-      320:{items:1},
+      320:{items:2},
       481:{items:2},
-      641:{items:2},
+      641:{items:3},
       768:{items:3},
       992:{items:4},
       1200:{items:5}
@@ -2981,7 +2981,7 @@ function pdtSlider() {
   // Функция слайдера для Хитов продаж на главной странице
   $('#pdt__sale .owl-carousel').owlCarousel({
     items: 3,
-    margin: 16,
+    margin: 32,
     loop: false,
     rewind: true,
     lazyLoad: true,
@@ -3093,7 +3093,7 @@ function newsCarousel() {
         481:{items:2},
         641:{items:2},
         768:{items:2},
-        992:{items:3},
+        992:{items:2},
         1200:{items:3}
       },
       onInitialized: carouselInitialized,
@@ -3126,7 +3126,7 @@ function newsCarousel() {
         481:{items:2},
         641:{items:2},
         768:{items:2},
-        992:{items:3},
+        992:{items:2},
         1200:{items:3}
       },
       onInitialize: carouselInitialized,
@@ -3156,10 +3156,10 @@ function newsCarousel() {
       responsive: {
         0:{items:1},
         320:{items:1},
-        481:{items:1},
-        575:{items:2},
+        481:{items:2},
+        641:{items:2},
         768:{items:2},
-        992:{items:3},
+        992:{items:2},
         1200:{items:3}
       },
       onInitialize: carouselInitialized,
@@ -3189,7 +3189,7 @@ function newsCarousel() {
       responsive: {
         0:{items:1},
         320:{items:1},
-        481:{items:1},
+        481:{items:2},
         641:{items:2},
         768:{items:2},
         992:{items:2},
@@ -3762,13 +3762,11 @@ function gridPage(){
       if(a != 0){
         $(this).parent().parent().parent().find('sup').text(a);
         $(this).parent().parent().parent().find('.clearThisFilter').show();
-        $(this).parent().parent().parent().find('.filter_block_name').addClass('haveCheck');
-        if($('.filter_buttons').hasClass('active')){}else{$('.filter_buttons').addClass('active')}
+        $(this).parent().parent().parent().find('.filter_block_name').addClass('hasFilters');
       }else{
         $(this).parent().parent().parent().find('sup').text('');
         $(this).parent().parent().parent().find('.clearThisFilter').hide();
-        $(this).parent().parent().parent().find('.filter_block_name').removeClass('haveCheck');
-        $('.filter_buttons').removeClass('active');
+        $(this).parent().parent().parent().find('.filter_block_name').removeClass('hasFilters');
       }
     });
   })
@@ -3783,11 +3781,11 @@ function gridPage(){
       })
       if(a != 0){
         $(this).find('sup').text(a);
-        $(this).find('.filter_block_name').addClass('haveCheck');
         $(this).find('.clearThisFilter').show();
+        $(this).addClass('hasFilters');
       }else{
-        $(this).find('.filter_block_name').removeClass('haveCheck');
         $(this).find('.clearThisFilter').hide();
+        $(this).removeClass('hasFilters');
       }
     })
   })
@@ -3813,8 +3811,8 @@ function gridPage(){
       }
     })
   })
-  $(function(){
-    /*Скрипт для удобства юзера, который применяет фильтры. После применения фильтра на экране устройства сразу будут показаны товары и юзеру не придется скроллить вниз.*/
+  /*$(function(){
+    /!*Скрипт для удобства юзера, который применяет фильтры. После применения фильтра на экране устройства сразу будут показаны товары и юзеру не придется скроллить вниз.*!/
     sLength = $('.ScrollTo').length;
     if(sLength > 0){
       if(getClientWidth() < 760){
@@ -3822,24 +3820,24 @@ function gridPage(){
         $(window).scrollTop(sTop.top);
       }
     }
-    /*Скрипт для сворачивания и разворачивания блока с фильтрами на маленьких экранах*/
+    /!*Скрипт для сворачивания и разворачивания блока с фильтрами на маленьких экранах*!/
     $('.filters .block-title').on('click',function(){
       if(getClientWidth() < 760){
         $(this).parent().hasClass('active') ? $(this).parent().removeClass('active') : $(this).parent().addClass('active');
       }
     })
 
-  })
+  })*/
+  // Фильтры по товарам. При нажании на какую либо характеристику или свойство товара происходит фильтрация товаров
+  $('.one_input input').click(function(){
+    $(this)[0].form.submit();
+  });
 }
 
-function addFilterAlert(obj){
-  buttonsHtml = $('.filter_buttons').wrap('<div class="filterResultMsg"></div>');
-  obj.append(buttonsHtml);
-}
+
 $(function(){
   $('.one_input input').on('click',function(){
     obj = $(this).parent().parent();
-    addFilterAlert(obj);
   })
 })
 
