@@ -867,11 +867,9 @@ function priceFilter() {
   if (priceInputMin.val() > priceFilterMinAvailable || priceInputMax.val() < priceFilterMaxAvailable) {
     $('.filters-price').addClass('hasFilters');
     $('.toolbar').addClass('hasFilters');
-    console.log('add')
   }else{
     $('.filters-price').removeClass('hasFilters');
     $('.toolbar').removeClass('hasFilters');
-    console.log('rem')
   }
   
 }
@@ -2914,17 +2912,17 @@ function pdtSlider() {
     }
   });
   // Функция слайдера для "Лидеры продаж" на главной странице
-  $('#pdt__best .owl-carousel').owlCarousel({
+  $('#pdt__sale .owl-carousel').owlCarousel({
     items: 5,
     margin: 16,
     loop: false,
     rewind: true,
     lazyLoad: true,
     nav: true,
-    navContainer: '#pdt__best .owl-nav',
+    navContainer: '#pdt__sale .owl-nav',
     navText: [ , ],
     dots: true,
-    dotsContainer: '#pdt__best .owl-dots',
+    dotsContainer: '#pdt__sale .owl-dots',
     autoHeight: false,
     autoHeightClass: 'owl-height',
     autoplay: false,
@@ -2979,7 +2977,7 @@ function pdtSlider() {
     onChanged: carouselInitialized
   });
   // Функция слайдера для Хитов продаж на главной странице
-  $('#pdt__sale .owl-carousel').owlCarousel({
+  $('#pdt__best .owl-carousel').owlCarousel({
     items: 3,
     margin: 32,
     loop: false,

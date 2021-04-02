@@ -850,6 +850,10 @@ header {border-bottom: 0;}
 header .inner {padding-bottom: 0;}
 .index header .inner {padding-bottom: 2rem;}
 }
+@media all and (max-width: 479px) {
+header .inner {padding: 1rem 0;}
+.index header .inner {padding-bottom: 1rem;}
+}
 /* Меню */
 header .menu .menu__icon {font-size: 30px;line-height: 1;}
 header .menu .menu__icon:hover {color: #7ca4a3;}
@@ -879,7 +883,7 @@ header .contacts .contacts__content .fancybox__link {font-size: 14px;margin: .5r
 /* Логотип */
 header .logo {flex-grow: 1;text-align: center;}
 @media all and (max-width: 479px) {
-header .logo {width: 100%;margin-top: 2rem;}
+header .logo {width: 100%;margin-top: 1rem;}
 }
 /* Поиск */
 .search__content {transform: scale(0);transition: all 0.3s ease;width: 0;position: absolute;top: 2rem;right: 78px;background: #e5edec;z-index: 11;}
@@ -944,8 +948,12 @@ header .logo {width: 100%;margin-top: 2rem;}
 .search__submit {width: 3.5rem;height: 3.5rem;line-height: 4rem;top: .25rem;right: .25rem;}
 }
 @media all and (max-width: 479px) {
+#addto {margin-top: 1rem;}
 .addto__items {max-height: calc(100vh - 250px);}
 .addto__cart .addto__items {max-height: calc(100vh - 330px);}
+.search__input {height: 3rem;}
+.search__submit {width: 2.5rem;height: 2.5rem;line-height: 3rem;}
+
 }
 
 /***  ***/
@@ -1018,6 +1026,9 @@ header .logo {width: 100%;margin-top: 2rem;}
 }
 @media all and (max-width: 479px) {
 .slider__title {font-size: 30px;}
+.slider__subtitle {display: none;}
+.slider__inner {padding: 2rem 1rem 4rem;}
+.slider__buttons {display: none;}
 #slideshow .owl-dots {bottom: 0;right: auto;width: 100%;}
 #slideshow .owl-dots .owl-dot {display: inline-block;}
 }
@@ -1206,25 +1217,27 @@ footer .footer__block:nth-child(2) {margin-top: 2rem;}
 
 
 /*** Успей купить! ***/
-#pdt__best .product__image .product__img {height: 216px;}
-#pdt__best .product__links {position: relative;top: auto;left: auto;margin-top: 1.5rem;}
-#pdt__best .product__ico span + span {display: none;}
+#pdt__sale .product__image .product__img {height: 214px;}
+#pdt__sale .product__links {position: relative;top: auto;left: auto;margin-top: 1.5rem;}
+#pdt__sale .product__ico span + span {display: none;}
 @media all and (max-width: 992px) {
-#pdt__best .product__image .product__img {height: 224px;}
+#pdt__sale .product__image .product__img {height: 224px;}
 }
 @media all and (max-width: 767px) {
-#pdt__best .product__image .product__img {height: 192px;}
+#pdt__sale .product__image .product__img {height: 192px;}
 }
 @media all and (max-width: 640px) {
-#pdt__best .product__image .product__img {height: 202px;}
-#pdt__best .products__grid .product__available {display: none;}
+#pdt__sale .product__image .product__img {height: 202px;}
+#pdt__sale .products__grid .product__available {display: none;}
 }
 @media all and (max-width: 480px) {
-#pdt__best .product__image .product__img {height: 164px;}
+#pdt__sale .product__image .product__img {height: 164px;}
 }
 @media all and (max-width: 374px) {
-#pdt__best .product__image .product__img {height: 136px;}
+#pdt__sale .product__image .product__img {height: 136px;}
 }
+
+
 /*** Вы смотрели ***/
 #viewed .product__image .product__img {height: 202px;}
 #viewed .product__links {position: relative;top: auto;left: auto;margin-top: 1.5rem;}
@@ -1236,7 +1249,13 @@ footer .footer__block:nth-child(2) {margin-top: 2rem;}
 #pdt__sales .block__nav .title {width: 100%;text-align: center;}
 #pdt__sales .inner {align-items: stretch;}
 #pdt__sales .pdt__products {width: 360px;padding-right: 1rem;}
+#pdt__sales .pdt__separator {width: 100%;height: 1px;background-color: #bdd6d3;display: flex;align-items: center;justify-content: center;}
+#pdt__sales .pdt__separator span {width: 10px;height: 10px;background-color: #bdd6d3;display: block;margin: 0 .25rem;transform: rotate(45deg);}
 #pdt__sales .pdt__category {width: calc(100% - 360px);padding-left: 1rem;padding-top: 3rem;}
+#pdt__sales .product__shop {text-align: center;}
+#pdt__sales .product__name {height: auto;}
+#pdt__sales .product__item {padding-bottom: 1rem;}
+#pdt__sales .block__title {margin-bottom: 1rem;}
 .category__title {font-size: 36px;font-family: 'Playfair Display', serif;}
 .category__title span {display: block;}
 .category__image {height: 100%;position: relative;background-image: url("{ASSETS_IMAGES_PATH}sales.jpg?design=THEMENAME");background-repeat: no-repeat;background-size: cover;background-position: center;}
@@ -1294,6 +1313,16 @@ footer .footer__block:nth-child(2) {margin-top: 2rem;}
 .products__grid .product__ico span:nth-child(3) {margin-top: 1rem;}
 .products__grid .product__ico span:nth-child(4) {margin-top: 1rem;}
 .products__grid .product__addCart [class^="add-"]:before {display: none;}
+/* Анимация блика на товаре */
+.product__item, .categories__item {position:relative;overflow:hidden;}
+.product__item:before, .categories__item:before {position: absolute;top: 0;left: -100%;z-index: 2;display: block;content: '';width: 50%;height: 100%;opacity:0;background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);-webkit-transform: skewX(-25deg);transform: skewX(-25deg);}
+.product__item:hover:before, .categories__item:hover:before {-webkit-animation: shine .5s;animation: shine .5s;opacity:1;}
+@-webkit-keyframes shine {
+	100% {left: 125%;}
+}
+@keyframes shine {
+	100% {left: 125%;}
+}
 @media all and (max-width: 1199px) {
 .product__image .product__img {height: 288px;}
 }
@@ -1388,6 +1417,7 @@ footer .footer__block:nth-child(2) {margin-top: 2rem;}
 .categories__image {margin-bottom: .5rem;height: 360px;display: flex;align-items: center;justify-content: center;}
 .categories__image img {max-width: 100%;max-height: 100%;}
 .categories__name {font-size: 36px;font-family: 'Playfair Display', serif;max-height: 96px;overflow: hidden;display: block;text-align: center;}
+.categories__item:hover .categories__name {color: #7ca4a3;}
 @media all and (max-width: 1199px) {
 .categories__image {height: 290px;}
 .categories__name {font-size: 32px;}
@@ -1685,8 +1715,6 @@ footer .footer__block:nth-child(2) {margin-top: 2rem;}
 
 
 #mainbody {overflow: hidden;}
-
-
 
 
 
