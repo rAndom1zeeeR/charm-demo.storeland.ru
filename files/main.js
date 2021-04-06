@@ -3088,7 +3088,7 @@ function newsCarousel() {
       responsive: {
         0:{items:1},
         320:{items:1},
-        481:{items:2},
+        480:{items:2},
         641:{items:2},
         768:{items:2},
         992:{items:2},
@@ -3121,7 +3121,7 @@ function newsCarousel() {
       responsive: {
         0:{items:1},
         320:{items:1},
-        481:{items:2},
+        480:{items:2},
         641:{items:2},
         768:{items:2},
         992:{items:2},
@@ -3154,7 +3154,7 @@ function newsCarousel() {
       responsive: {
         0:{items:1},
         320:{items:1},
-        481:{items:2},
+        480:{items:2},
         641:{items:2},
         768:{items:2},
         992:{items:2},
@@ -3187,7 +3187,7 @@ function newsCarousel() {
       responsive: {
         0:{items:1},
         320:{items:1},
-        481:{items:2},
+        480:{items:2},
         641:{items:2},
         768:{items:2},
         992:{items:2},
@@ -3252,7 +3252,7 @@ function viewed() {
     responsive: {
       0:{items:1},
       320:{items:1},
-      481:{items:2},
+      480:{items:2},
       641:{items:2},
       768:{items:3},
       992:{items:4},
@@ -3571,7 +3571,7 @@ $(document).ready(function(){
   }
   if(getClientWidth() < 768){
   }
-  if(getClientWidth() > 481 && window.outerHeight < 630){
+  if(getClientWidth() > 480 && window.outerHeight < 630){
     $('body').addClass('landscape');
   }else{
     $('body').removeClass('landscape');
@@ -3584,7 +3584,7 @@ $(window).resize(function(){
   }
   if(getClientWidth() < 768){
   }
-  if(getClientWidth() > 481 && window.outerHeight < 630){
+  if(getClientWidth() > 480 && window.outerHeight < 630){
     $('body').addClass('landscape');
   }else{
     $('body').removeClass('landscape');
