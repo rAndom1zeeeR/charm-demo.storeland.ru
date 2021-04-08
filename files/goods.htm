@@ -202,6 +202,7 @@
     <form action="{CART_ADD_GOODS_MODIFICATION_URL}" method="post" class="productView__form">
       <input type="hidden" name="hash" value="{HASH}" />
       <input type="hidden" name="form[goods_from]" value="{GOODS_FROM}" />
+	    <input type="hidden" name="form[goods_id]" value="{GOODS_ID}" class="goodsId" />
       <input type="hidden" name="form[goods_mod_id]" value="{GOODS_MOD_ID}" class="goodsModificationId" />
       <input type="hidden" name="form[goods_mod_id][{GOODS_MOD_ID}]" value="1" class="goodsDataMainModificationId" />
 	    <input type="hidden" class="goodsDataMainImage" data-id="{GOODS_IMAGE_ID}" data-src="{% IF GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=florist{% ELSE %}{GOODS_IMAGE_MEDIUM}{% ENDIF %}" />

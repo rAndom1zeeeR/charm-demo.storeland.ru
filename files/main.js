@@ -1223,6 +1223,7 @@ function Compare() {
 // Добавление товара в корзину
 function AddCart() {
 $('.productView__form, .goodsListForm').off('submit').submit(function() {
+  let t = $(this);
   // Выносим функции из шаблонов
   if ($(this).attr('rel') === 'quick') {
     quickOrder(this);
@@ -1237,87 +1238,89 @@ $('.productView__form, .goodsListForm').off('submit').submit(function() {
   // Находим форму, которую отправляем на сервер, для добавления товара в корзину
   let formBlock = $($(this).get(0));
   let addressCart = '/cart';
-    // Проверка на существование формы отправки запроса на добавление товара в корзину
-    if (1 > formBlock.length || formBlock.get(0).tagName != 'FORM') {
-      alert('Не удалось найти форму добавления товара в корзину');
-      return false;
-    }
-    // Получаем данные формы, которые будем отправлять на сервер
-    let formData = formBlock.serializeArray();
-    // Сообщаем серверу, что мы пришли через ajax запрос
-    formData.push({name: 'ajax_q', value: 1});
-    // Так же сообщим ему, что нужно сразу отобразить форму быстрого заказа
-    //formData.push({name: 'fast_order', value: 1});
-    // Аяксом добавляем товар в корзину и вызываем форму быстрого заказа товара
-    $.ajax({
-      type: "POST",
-      cache: false,
-      url: formBlock.attr('action'),
-      data: formData,
-      success: function(data) {
-        //$.fancybox.open(data);
-        // Анализ системного сообщения в коризне
-        let str = $(data).html();
-        // Проверяем текст сообщения на наличие ошибки
-        if (str.indexOf("Не удалось добавить товар") != -1) {
-          // Сообщение с ошибкой
-          if(typeof(Noty) == "function") {
-            new Noty({
-              text: '<div class="noty__addto"><i class="icon-close"></i><div class="noty__message">'+ $(data).html() + '</div></div>',
-              layout:"bottomCenter",
-              type:"warning",
-              theme:"",
-              closeWith: ['click'],
-              textAlign:"center",
-              easing:"swing",
-              animation: {
-                open: 'animated fadeInUp',
-                close: 'animated fadeOutDown',
-                easing: 'swing',
-                speed: 400
-              },
-              timeout:"2000",
-              progressBar:true,
-              closable:true,
-              closeOnSelfClick:true,
-              modal:false,
-              dismissQueue:false,
-              onClose:true,
-              killer:false
-            }).show();
-          }
-        } else {
-          // Сообщение с успешным добавлением
-          if(typeof(Noty) == "function") {
-            new Noty({
-              text: '<div class="noty__addto"><i class="icon-check"></i><div class="noty__message">'+ $(data).html() + '</div></div>',
-              layout:"bottomCenter",
-              type:"success",
-              theme:"",
-              closeWith: ['click'],
-              textAlign:"center",
-              easing:"swing",
-              animation: {
-                open: 'animated fadeInUp',
-                close: 'animated fadeOutDown',
-                easing: 'swing',
-                speed: 400
-              },
-              timeout:"2000",
-              progressBar:true,
-              closable:true,
-              closeOnSelfClick:true,
-              modal:false,
-              dismissQueue:false,
-              onClose:true,
-              killer:false
-            }).show();
-          }
+  // Проверка на существование формы отправки запроса на добавление товара в корзину
+  if (1 > formBlock.length || formBlock.get(0).tagName != 'FORM') {
+    alert('Не удалось найти форму добавления товара в корзину');
+    return false;
+  }
+  // Получаем данные формы, которые будем отправлять на сервер
+  let formData = formBlock.serializeArray();
+  // Сообщаем серверу, что мы пришли через ajax запрос
+  formData.push({name: 'ajax_q', value: 1});
+  // Так же сообщим ему, что нужно сразу отобразить форму быстрого заказа
+  //formData.push({name: 'fast_order', value: 1});
+  // Аяксом добавляем товар в корзину и вызываем форму быстрого заказа товара
+  $.ajax({
+    type: "POST",
+    cache: false,
+    url: formBlock.attr('action'),
+    data: formData,
+    success: function(data) {
+      //$.fancybox.open(data);
+      // Анализ системного сообщения в коризне
+      let str = $(data).html();
+      // Проверяем текст сообщения на наличие ошибки
+      if (str.indexOf("Не удалось добавить товар") != -1) {
+        // Сообщение с ошибкой
+        if(typeof(Noty) == "function") {
+          new Noty({
+            text: '<div class="noty__addto"><i class="icon-close"></i><div class="noty__message">'+ $(data).html() + '</div></div>',
+            layout:"bottomCenter",
+            type:"warning",
+            theme:"",
+            closeWith: ['click'],
+            textAlign:"center",
+            easing:"swing",
+            animation: {
+              open: 'animated fadeInUp',
+              close: 'animated fadeOutDown',
+              easing: 'swing',
+              speed: 400
+            },
+            timeout:"2000",
+            progressBar:true,
+            closable:true,
+            closeOnSelfClick:true,
+            modal:false,
+            dismissQueue:false,
+            onClose:true,
+            killer:false
+          }).show();
         }
-        // Скрытое обновление корзины
-        $('.hiddenUpdate').html(data);
+      } else {
+        // Сообщение с успешным добавлением
+        if(typeof(Noty) == "function") {
+          new Noty({
+            text: '<div class="noty__addto"><i class="icon-check"></i><div class="noty__message">'+ $(data).html() + '</div></div>',
+            layout:"bottomCenter",
+            type:"success",
+            theme:"",
+            closeWith: ['click'],
+            textAlign:"center",
+            easing:"swing",
+            animation: {
+              open: 'animated fadeInUp',
+              close: 'animated fadeOutDown',
+              easing: 'swing',
+              speed: 400
+            },
+            timeout:"2000",
+            progressBar:true,
+            closable:true,
+            closeOnSelfClick:true,
+            modal:false,
+            dismissQueue:false,
+            onClose:true,
+            killer:false
+          }).show();
+        }
+        let prodId = t.find('.goodsId').val()
+        $('.product__item .productId[value='+ prodId +']').parent().find('.add-mod').addClass('added');
       }
-    });
+      // Скрытое обновление корзины
+      $('.hiddenUpdate').html(data);
+    }
+  });
   return false;
 });
 }
@@ -1816,7 +1819,8 @@ function removeFromCompareAll(e){
 function removeFromCart(e){
   event.preventDefault();
   if(confirm('Вы точно хотите удалить товар из корзины?')){
-  e.parent().parent().fadeOut().remove();
+  e.parent().parent().parent().fadeOut().remove();
+  let dataId = e.data('id');
   let href = e.attr('href');
   let qty = e.data('qty');
   let oldCount = $('.cart__count').attr('data-count');
@@ -1824,6 +1828,11 @@ function removeFromCart(e){
     cache  : false,
     url		 : href,
     success: function(d){
+      console.log('remove')
+      $('.productId[value='+ dataId +']').each(function(){
+        $(this).parent().find('.add-cart').removeClass('added');
+        console.log('added')
+      })
       let newCount = oldCount - qty;
       $('.cart__count').attr('data-count', newCount).text(newCount);
       $('.totalSum').html($(d).find('.totalSum').html());
@@ -1867,6 +1876,8 @@ function removeFromCartAll(e){
       $('.addto__cart .addto__item').remove();
       $('.addto__cart .preloader').hide();
       $('.addto__total').hide();
+      $('.add-cart').removeClass('added');
+      $('.add-mod').removeClass('added');
 		}
   });
   }
@@ -2240,7 +2251,7 @@ $(document).ready(function(){
 });
 // Действие при нажатии на кнопку быстрого просмотра.  
 $(document).ready(function(){
-  $(document).on('click', 'a.add-mod', function() {
+  $('.add-mod').on('click', function() {
     let href = $(this).attr('href');
     href += (false !== href.indexOf('?') ? '&' : '?') + 'only_body=1';
     quickViewShowMod(href);

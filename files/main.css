@@ -1300,8 +1300,7 @@ footer .footer__block:nth-child(2) {margin-top: 2rem;}
 .product__image .product__img img {max-width: 100%;max-height: 100%;width: auto;}
 .product__name {font-size: 1rem;line-height: 1.5rem;height: 3rem;overflow: hidden;word-break: break-word;}
 .products__grid .product__price {margin-top: 1rem;}
-.products__grid .product__price > span {display: block;}
-.products__grid .product__price .price__old {margin-top: 0.5rem;}
+.products__grid .product__price .price__now {margin-top: 0.5rem;}
 .products__grid .product__links {position: absolute;top: 1rem;left: 1rem;}
 .product__links a {color: #000000;font-size: 24px;margin: 0 .5rem;line-height: 1;transform: scale(1);transition: all 0.3s ease;display: inline-block;position: relative;}
 .product__links a:active {transform: scale(1.4);}
