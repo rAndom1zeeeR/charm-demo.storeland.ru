@@ -927,7 +927,7 @@ header .logo {width: 100%;margin-top: 1rem;}
 
 /*** Добавить в Избр, Срав, Корзину, ЛК ***/
 #addto {width: 280px;display: flex;align-items: center;justify-content: flex-end;}
-.dropdown__inner {padding: 0 1.5rem;}
+.dropdown__inner {padding: 0 1.5rem;position: relative;}
 .addto__label {padding: 0 1rem;display: block;}
 .addto__label i {font-size: 30px;}
 .addto__label {transform: scale(1);transition: all 0.3s ease;}

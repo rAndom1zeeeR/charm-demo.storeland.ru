@@ -1231,8 +1231,6 @@ $('.productView__form, .goodsListForm').off('submit').submit(function() {
     $('.addto__cart').addClass("hasItems");
     return (false);
   }
-  $('.cart').addClass("hasItems");
-  $('.addto__cart').addClass("hasItems");
   $('.cart__count').animate({opacity: 0,display: "none"},500);
   $('.cart__count').animate({display: "inline",opacity: 1},500);
   // Находим форму, которую отправляем на сервер, для добавления товара в корзину
@@ -1314,8 +1312,9 @@ $('.productView__form, .goodsListForm').off('submit').submit(function() {
             killer:false
           }).show();
         }
-        let prodId = t.find('.goodsId').val()
+        let prodId = t.find('.goodsId').val();
         $('.product__item .productId[value='+ prodId +']').parent().find('.add-mod').addClass('added');
+        $('.cart, .addto__cart').addClass("hasItems");
       }
       // Скрытое обновление корзины
       $('.hiddenUpdate').html(data);
@@ -1828,10 +1827,8 @@ function removeFromCart(e){
     cache  : false,
     url		 : href,
     success: function(d){
-      console.log('remove')
       $('.productId[value='+ dataId +']').each(function(){
         $(this).parent().find('.add-cart').removeClass('added');
-        console.log('added')
       })
       let newCount = oldCount - qty;
       $('.cart__count').attr('data-count', newCount).text(newCount);
@@ -1862,7 +1859,7 @@ function removeFromCartAll(e){
   event.preventDefault();
   if(confirm('Вы точно хотите очистить корзину?')){
   // Предзагрузчик анимации
-  $('.addto__cart').prepend('<div class="preloader small"><div class="loading"></div></div>');
+  $('.addto__cart .dropdown__inner').prepend('<div class="preloader small"><div class="loading"></div></div>');
   e.parent().fadeOut().remove();
   let href = e.attr('href');
   $.ajax({ 

@@ -184,6 +184,7 @@
 			    <input type="hidden" name="hash" value="{HASH}" />
 			    <input type="hidden" name="form[goods_from]" value="{goods.GOODS_FROM}" />
 			    <input type="hidden" name="form[goods_mod_id]" value="{goods.MIN_PRICE_NOW_ID}" />
+			    <input type="hidden" value="{goods.ID}" class="productId" />
 			    <div class="product__image">
 				    <a href="{goods.URL_MIN_PRICE_NOW | url_amp}" class="product__img" title="{goods.NAME}" itemprop="url">
 					    <img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=THEMENAME" data-src="{% IF goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{goods.NAME}" itemprop="image">
@@ -352,6 +353,7 @@
 			    <input type="hidden" name="hash" value="{HASH}" />
 			    <input type="hidden" name="form[goods_from]" value="{goods.GOODS_FROM}" />
 			    <input type="hidden" name="form[goods_mod_id]" value="{goods.MIN_PRICE_NOW_ID}" />
+			    <input type="hidden" value="{goods.ID}" class="productId" />
 			    <div class="product__image">
 				    <a href="{goods.URL_MIN_PRICE_NOW | url_amp}" class="product__img" title="{goods.NAME}" itemprop="url">
 					    <img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=THEMENAME" data-src="{% IF goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{goods.NAME}" itemprop="image">
