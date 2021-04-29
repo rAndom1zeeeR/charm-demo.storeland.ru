@@ -1312,9 +1312,14 @@ $('.productView__form, .goodsListForm').off('submit').submit(function() {
             killer:false
           }).show();
         }
+        // ИД товара из карточки
         let prodId = t.find('.goodsId').val();
+        // Добавление класса added для выбора модификации
         $('.product__item .productId[value='+ prodId +']').parent().find('.add-mod').addClass('added');
+        // Обновление корзины
         $('.cart, .addto__cart').addClass("hasItems");
+        // Добавление активного класса текущему товару
+        t.find('.add-cart').addClass('added');
       }
       // Скрытое обновление корзины
       $('.hiddenUpdate').html(data);

@@ -33,7 +33,7 @@ body {background-color: #ffffff;color: #000000;font-family: 'Gotham Pro', sans-s
 /* END Настройки максимальных размеров генерируемых изображений */
 
 /* Иконки форматов файлов */
-.file_extension_icon        {width:1rem;height:1rem;display:block;float: left;margin-right: 0.625rem;background:#ffffff url('{ASSEST_IMAGES_PATH}icons-files-extensions.gif?design=THEMENAME') no-repeat left top;}
+.file_extension_icon        {width:1rem;height:1rem;display:block;float: left;margin-right: 0.625rem;background:#ffffff url('{ASSEST_IMAGES_PATH}icons-files-extensions.gif?design=charm') no-repeat left top;}
 .file_extension_icon.torrent{background-position:-1rem 0}
 .file_extension_icon.xls    {background-position:-2rem 0}
 .file_extension_icon.ie7    {background-position:-48px 0}
@@ -1035,7 +1035,7 @@ header .logo {width: 100%;margin-top: 1rem;}
 
 
 /*** Промо блок ***/
-.promo__inner {padding: 5rem 6rem;background-color: #f6f6f6;background-image: url("{ASSETS_IMAGES_PATH}promo.jpg?design=THEMENAME");background-position: right;background-size: cover;background-repeat: no-repeat;}
+.promo__inner {padding: 5rem 6rem;background-color: #f6f6f6;background-image: url("{ASSETS_IMAGES_PATH}promo.jpg?design=charm");background-position: right;background-size: cover;background-repeat: no-repeat;}
 .promo__title {font-size: 40px;font-family: 'Playfair Display', serif;}
 .promo__title span {display: block;}
 .promo__subtitle {margin-top: 3rem;display: block;}
@@ -1260,7 +1260,7 @@ footer .footer__block:nth-child(2) {margin-top: 2rem;}
 #pdt__sales .product__image .product__img {height: 344px;}
 .category__title {font-size: 36px;font-family: 'Playfair Display', serif;}
 .category__title span {display: block;}
-.category__image {height: 100%;position: relative;background-image: url("{ASSETS_IMAGES_PATH}sales.jpg?design=THEMENAME");background-repeat: no-repeat;background-size: cover;background-position: center;}
+.category__image {height: 100%;position: relative;background-image: url("{ASSETS_IMAGES_PATH}sales.jpg?design=charm");background-repeat: no-repeat;background-size: cover;background-position: center;}
 .category__content {width: 100%;position: absolute;bottom: 0;padding: 3rem;z-index: 2;display: flex;align-items: center;justify-content: space-between;flex-wrap: wrap;}
 .product__inner {display: flex;align-items: center;flex-wrap: wrap;width: 100%;position: absolute;bottom: 0;}
 .product__inner > div {width: 50%;text-align: center;line-height: 24px;}
