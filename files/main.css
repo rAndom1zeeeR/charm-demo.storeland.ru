@@ -776,7 +776,7 @@ section {margin: 2rem 0;}
 .total__buttons .total__pp {text-align: center;}
 }
 @media all and (max-width: 479px) {
-.cart__inner {width: calc(100% - 80px);padding: 1rem 0 1rem 1rem;}
+.cart__inner {width: calc(100% - 80px);padding: 1rem 0 1rem 1rem;margin: 0;}
 .cart__image {width: 80px;height: 80px;}
 .cart__image img {max-width: 80px;max-height: 80px;}
 .cart__price {width: 100%;margin-bottom: 1rem;}
@@ -861,9 +861,9 @@ header .menu .menu__icon {transform: scale(1);transition: all 0.3s ease;}
 header .menu .menu__icon:active {transform: scale(1.4);}
 /* Контакты */
 header .contacts {padding: 0 2rem;}
-header .contacts__block.phone {height: 44px;}
+header .contacts__block.phone {min-width: 144px;height: 44px;position: relative;}
 header .contacts .contacts__phone {font-size: 16px;}
-header .contacts i.icon-written {margin-left: 1rem;font-size: 20px;display: inline-block;vertical-align: middle;}
+header .contacts i.icon-written {margin-left: 1rem;font-size: 20px;display: inline-block;vertical-align: middle;position: absolute;right: -2rem;}
 header .contacts i.icon-written:hover {color: #7ca4a3;cursor: pointer;}
 header .contacts i.icon-written:before {position: relative;bottom: auto;height: auto;}
 header .contacts i.icon-written {transform: scale(1);transition: all 0.3s ease;}
