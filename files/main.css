@@ -708,6 +708,7 @@ section {margin: 2rem 0;}
 .coupon__order.good input {border-color: #7ca4a3;}
 @media all and (max-width: 479px) {
 .coupon__button {position: relative;right: auto;margin-top: 1rem;}
+.coupon__reset {right: 1rem;top: 1rem;}
 }
 
 

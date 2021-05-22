@@ -320,6 +320,7 @@
                 <tr class="discount">
                   <td colspan="2" class="name">{cart_discount.DISCOUNT_NAME}</td>
                   {% IF cart_discount.IS_PERCENT %}<td colspan="2" class="percent">{cart_discount.DISCOUNT_VALUE}%</td>{% ELSE %}<td colspan="2" class="percent">{cart_discount.DISCOUNT_VALUE | money_format}</td>{% ENDIF %}
+	                <input type="hidden" class="cart-sum-now-with-discount" colspan="2" data-value="{CART_SUM_NOW_WITH_DISCOUNT}" />
                 </tr>
               {% ENDIF %}
             {% ENDFOR %}

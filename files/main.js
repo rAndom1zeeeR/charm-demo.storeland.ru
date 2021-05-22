@@ -1321,7 +1321,7 @@ $('.productView__form, .goodsListForm').off('submit').submit(function() {
         // Добавление активного класса текущему товару
         t.find('.add-cart').addClass('added');
       }
-      // Скрытое обновление корзины
+      // Скрытое обновление корзины3059.1
       $('.hiddenUpdate').html(data);
     }
   });
@@ -2746,10 +2746,11 @@ function coupons() {
       url: url,
       data: formData,
       success: function(data) {
-        let oldQuickPrice = $('.cartSumTotal:eq(0) .num').text().toString().replace(/\s/g, '')
+        let oldQuickPrice = $('.cartSumDiscount').attr('data-value');
         let discountBlock = $(data).closest('#myform').find('.discount');
         let discountName = discountBlock.find('.name').text();
         let discountPercent = discountBlock.find('.percent').text();
+        let discountSum = discountBlock.find('.cart-sum-now-with-discount').attr('data-value');
         let totalBlock = $(data).closest('#myform').find('.total');
         // Записываем название и размер скидки по купону
         $('.total__coupons .total__label span').html(discountName);
@@ -2760,7 +2761,7 @@ function coupons() {
         let totalSum = totalBlock.find('.total-sum').data('total-sum');
         let deliveryPrice = parseInt($('.cartSumDelivery .num').text());
         let newTotalSum = totalSum + deliveryPrice;
-        if (discountBlock.length) {
+        if (oldQuickPrice > discountSum) {
           couponInput.parent().removeClass('error');
           couponInput.parent().addClass('good');
           submitBtn.find('span').text('Применен');
