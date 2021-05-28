@@ -718,6 +718,7 @@ section {margin: 2rem 0;}
 .cartTable {position: relative;display: flex;flex-wrap: wrap;align-items: flex-start;}
 .cartTable.disable .cart__qty:before {content: "";display: block;width: 100%;height: 60px;z-index: 3;position: absolute;}
 .cartTable.disable .cart__qty a, .cartTable.disable .cart__qty input {background-color: #f4f3f5;border-color: #f4f3f5;}
+.cartTable.disable .cart__delete {display: none;}
 .cart__items {width: 100%;}
 .cart__item {margin-top: 2rem;display: flex;flex-wrap: wrap;align-items: center;}
 .cart__item:first-child {margin-top: 0;}
