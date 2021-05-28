@@ -1834,10 +1834,10 @@ function removeFromCart(e){
     success: function(d){
       $('.productId[value='+ dataId +']').each(function(){
         $(this).parent().find('.add-cart').removeClass('added');
-      })
+      });
       let newCount = oldCount - qty;
       $('.cart__count').attr('data-count', newCount).text(newCount);
-      $('.totalSum').html($(d).find('.totalSum').html());
+      $('.cartSum').html($(d).find('.cartSum').html());
       let flag = 0;
       if(newCount != 0){
         $('.addto__cart .addto__item').each(function(){
