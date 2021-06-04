@@ -659,11 +659,13 @@ function goodspage() {
   if(opinionCount<=3){ opinionContent.find('.opinion__show').hide(); }
   opinionContent.find('.opinion__show .showAll').on('click',function(event){
     event.preventDefault();
-    if($(this).hasClass('active')){
-      $(this).removeClass('active').find('span').text("Все отзывы");
+    if($(this).parent().hasClass('active')){
+      console.log('has', $(this))
+      $(this).parent().removeClass('active').find('span').text("Все отзывы");
       opinionContent.find('.opinion__item').removeClass('show');
     }else{
-      $(this).addClass('active').find('span').text("Скрыть все");
+      console.log('not', $(this))
+      $(this).parent().addClass('active').find('span').text("Скрыть все");
       opinionContent.find('.opinion__item').addClass('show');
     }
   });

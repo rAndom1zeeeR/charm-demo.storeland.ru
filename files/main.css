@@ -1039,7 +1039,7 @@ header .logo {width: 100%;margin-top: 1rem;}
 
 
 /*** Промо блок ***/
-.promo__inner {padding: 5rem 6rem;background-color: #f6f6f6;background-image: url("{ASSETS_IMAGES_PATH}promo.jpg?design=charm");background-position: right;background-size: cover;background-repeat: no-repeat;}
+.promo__inner {padding: 5rem 6rem;background-color: #f6f6f6;background-position: right;background-size: cover;background-repeat: no-repeat;}
 .promo__title {font-size: 40px;font-family: 'Playfair Display', serif;}
 .promo__title span {display: block;}
 .promo__subtitle {margin-top: 3rem;display: block;}
@@ -1264,7 +1264,7 @@ footer .footer__block:nth-child(2) {margin-top: 2rem;}
 #pdt__sales .product__image .product__img {height: 344px;}
 .category__title {font-size: 36px;font-family: 'Playfair Display', serif;}
 .category__title span {display: block;}
-.category__image {height: 100%;position: relative;background-image: url("{ASSETS_IMAGES_PATH}sales.jpg?design=charm");background-repeat: no-repeat;background-size: cover;background-position: center;}
+.category__image {height: 100%;position: relative;background-repeat: no-repeat;background-size: cover;background-position: center;}
 .category__content {width: 100%;position: absolute;bottom: 0;padding: 3rem;z-index: 2;display: flex;align-items: center;justify-content: space-between;flex-wrap: wrap;}
 .product__inner {display: flex;align-items: center;flex-wrap: wrap;width: 100%;position: absolute;bottom: 0;}
 .product__inner > div {width: 50%;text-align: center;line-height: 24px;}
@@ -1604,6 +1604,7 @@ footer .footer__block:nth-child(2) {margin-top: 2rem;}
 .opinion__delete {margin-top: 1rem;}
 .opinion__more {color: #36928a;font-family: 'Playfair Display', serif;display: block;margin-bottom: 1rem;}
 .opinion__more:hover {color: #000000;cursor: pointer;}
+.opinion__show {padding: 0 1rem;}
 /* Отзывы: Добавление */
 .opinion__addForm {margin-top: 2rem;}
 .opinion__form {width: 600px;background-color: #f6f6f6;padding: 3rem;margin: 0 auto;overflow: hidden;}
