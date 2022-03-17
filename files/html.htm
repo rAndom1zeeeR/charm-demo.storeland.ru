@@ -305,7 +305,7 @@
 				<div class="title">Наши лучшие украшения</div>
 				<div class="nav__tabs">
 					{% IFNOT index_page_new_goods_empty %}<a href="#" class="nav__tab button active" data-content="pdt__new">Новинки</a>{% ENDIF %}
-					{% IFNOT index_page_goods_empty %}<a href="#" class="nav__tab button {% IF index_page_new_goods_empty %}active{% ENDIF %}" data-content="pdt__best">Бестселлеры</a>{% ENDIF %}
+					{% IFNOT index_page_favorites_goods_empty %}<a href="#" class="nav__tab button {% IF index_page_new_goods_empty %}active{% ENDIF %}" data-content="pdt__best">Бестселлеры</a>{% ENDIF %}
 				</div>
 				<div class="owl-nav" data-content="">
 					<div class="owl-prev"></div>
@@ -1823,7 +1823,7 @@
 			</div>
 		</div>
 		<!-- Сравнение -->
-		<div id="addtoCompare" class="addto__compare dropdown__content {% IF COMPARE_GOODS_COUNT > 0 %}hasItems{% ENDIF %}" data-open="compare">
+		<div id="addtoCompare" class="addto__compare dropdown__content right {% IF COMPARE_GOODS_COUNT > 0 %}hasItems{% ENDIF %}" data-open="compare">
 			<div class="dropdown__title">
 				<span class="dropdown__label">Сравнение</span>
 				<span class="dropdown__close"><i class="icon-close"></i></span>
@@ -1857,7 +1857,7 @@
 			</div>
 		</div>
 		<!-- Сохраненное -->
-		<div id="addtoFavorites" class="addto__favorites dropdown__content {% IF FAVORITES_GOODS_COUNT > 0 %}hasItems{% ENDIF %}" data-open="favorites">
+		<div id="addtoFavorites" class="addto__favorites dropdown__content right {% IF FAVORITES_GOODS_COUNT > 0 %}hasItems{% ENDIF %}" data-open="favorites">
 			<div class="dropdown__title">
 				<span class="dropdown__label">Избранное</span>
 				<span class="dropdown__close"><i class="icon-close"></i></span>
