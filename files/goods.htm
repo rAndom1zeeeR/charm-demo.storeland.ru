@@ -93,7 +93,7 @@
 				  data-tooltipOFF="Добавить в сравнение"
 				  data-action-text-add="В Сравнение"
 				  data-action-text-del="В Сравнении"
-				  title="Убрать &laquo;{GOODS_NAME}&raquo; из списка сравнения с другими товарами"
+					title="Добавить &laquo;{GOODS_NAME}&raquo; в список сравнения с другими товарами"
 				  href="{COMPARE_ADD_URL}?id={GOODS_MOD_ID}&amp;return_to={CURRENT_URL | urlencode}"
 				  rel="nofollow"
 		  ><span>В сравнение</span></a>
@@ -163,7 +163,7 @@
 	  <!-- Среднее значение по результатам всех отзывов об этом товаре -->
 	  {% IFNOT SETTINGS_OPINION_DISABLE %}
 	  <div class="productView__ratings">
-		  <div class="ratings__label">{% IF GOODS_OPINION_RATING_VALUE_ROUND %}{GOODS_OPINION_RATING_CNT_ALL} отзыв{GOODS_OPINION_RATING_CNT_ALL | gen_word_end("","а","ов")}{% ELSE %}Нет отзывов{% ENDIF %}</div>
+		  <div class="ratings__label">{% IF GOODS_OPINION_RATING_CNT_ALL > 0 %}{GOODS_OPINION_RATING_CNT_ALL} отзыв{GOODS_OPINION_RATING_CNT_ALL | gen_word_end("","а","ов")}{% ELSE %}Нет отзывов{% ENDIF %}</div>
 		  <div class="ratings" title="Рейтинг товара">
 			  {% IF GOODS_OPINION_RATING_VALUE_ROUND %}
 			  <span itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
@@ -275,7 +275,18 @@
         </div>
         <!-- Уведомить -->
         <div class="productView__notify">
-          <a class="add-notify button" data-fancybox data-src="#fancybox__notify" href="javascript:;"><span>Уведомить</span></a>
+          <a class="add-notify button"
+						title="Уведомить"
+						data-tooltip="Уведомить"
+						rel="nofollow"
+						data-fancybox
+						data-src="#fancybox__notify"
+						href="javascript:;"
+						data-name="{GOODS_NAME}"
+						data-art="{GOODS_MOD_ART_NUMBER}"
+					>
+						<span>Уведомить</span>
+					</a>
         </div>
         <!-- Добавление товара в корзину -->
 	      <div class="productView__addtoCart">

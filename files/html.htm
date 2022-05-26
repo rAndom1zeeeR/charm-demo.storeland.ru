@@ -1874,7 +1874,7 @@
 							<div class="addto__price {CURRENCY_CHAR_CODE}">
 								<div class="price__now">{favorites_goods.MIN_PRICE_NOW | money_format}</div>
 								<!-- Удаление -->
-								<a href="{FAVORITES_DELETE_URL}?id={favorites_goods.MIN_PRICE_NOW_ID}" data-goods-mod-id="{favorites_goods.MIN_PRICE_NOW_ID}" class="addto__remove remove" title="Убрать товар из списка избранного" onclick="removeFromFavorites($(this))"><span>Удалить</span></a>
+								<a href="{favorites_goods.FAVORITES_DELETE_URL}" data-goods-mod-id="{favorites_goods.MIN_PRICE_NOW_ID}" class="addto__remove remove" title="Убрать товар из списка избранного" onclick="removeFromFavorites($(this))"><span>Удалить</span></a>
 							</div>
 						</div>
 					</div>
